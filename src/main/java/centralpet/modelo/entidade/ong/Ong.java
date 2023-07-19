@@ -1,9 +1,12 @@
 package centralpet.modelo.entidade.ong;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
 import centralpet.modelo.entidade.contato.Contato;
 import centralpet.modelo.entidade.endereco.Endereco;
+import centralpet.modelo.entidade.pet.Pet;
 import centralpet.modelo.entidade.usuario.Usuario;
 
 public class Ong extends Usuario implements Serializable {
@@ -13,6 +16,8 @@ public class Ong extends Usuario implements Serializable {
 	private Long id;
 	
 	private String cnpj;
+	
+	private List<Pet> pets = new ArrayList<>();
 	
 	public Ong () {}
 	
@@ -41,6 +46,18 @@ public class Ong extends Usuario implements Serializable {
 
 	public void setId(Long id) {
 	 this.id = id;
+	}
+	
+	public List<Pet> getPets () {
+		return pets;
+	}
+	
+	public void adicionarPet (Pet pet) {
+		this.pets.add(pet);
+	}
+	
+	public void removerPet (Pet pet) {
+		this.pets.remove(pet);
 	}
 	
 	
