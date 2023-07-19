@@ -2,9 +2,12 @@ package centralpet.modelo.entidade.tutor;
 
 import java.io.Serializable;
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
 import centralpet.modelo.entidade.contato.Contato;
 import centralpet.modelo.entidade.endereco.Endereco;
+import centralpet.modelo.entidade.pet.Pet;
 import centralpet.modelo.entidade.usuario.Usuario;
 import centralpet.modelo.enumeracao.genero.GeneroTutor;
 
@@ -19,6 +22,10 @@ public class Tutor extends Usuario implements Serializable {
 	private LocalDate dataNascimento;
 	
 	private GeneroTutor generoTutor;
+	
+	private List<Pet> petsAdotados = new ArrayList<>();
+	
+	private List<Pet> petsFavoritados = new ArrayList<>();
 	
 	public Tutor () {}
 	
@@ -69,6 +76,28 @@ public class Tutor extends Usuario implements Serializable {
 		this.generoTutor = generoTutor;
 	}
 	
+	public List<Pet> getPetsAdotados() {
+		return petsAdotados;
+	}
 	
-
+	public void adotarPet (Pet pet) {
+		this.petsAdotados.add(pet);
+	}
+	
+	public void devolverPet (Pet pet) {
+		this.petsAdotados.remove(pet);
+	}
+	
+	public List<Pet> getPetsFavoritados() {
+		return petsFavoritados;
+	}
+	
+	public void favoritarPet (Pet pet) {
+		this.petsFavoritados.add(pet);
+	}
+	
+	public void desFavoritarPet (Pet pet) {
+		this.petsFavoritados.remove(pet);
+	}
+	
 }
