@@ -7,6 +7,7 @@ import java.util.List;
 import centralpet.modelo.entidade.contato.Contato;
 import centralpet.modelo.entidade.endereco.Endereco;
 import centralpet.modelo.entidade.pet.Pet;
+import centralpet.modelo.entidade.termo.Termo;
 import centralpet.modelo.entidade.usuario.Usuario;
 
 public class Ong extends Usuario implements Serializable {
@@ -18,6 +19,8 @@ public class Ong extends Usuario implements Serializable {
 	private String cnpj;
 	
 	private List<Pet> pets = new ArrayList<>();
+	
+	private List<Termo> termos = new ArrayList<>();
 	
 	public Ong () {}
 	
@@ -60,5 +63,16 @@ public class Ong extends Usuario implements Serializable {
 		this.pets.remove(pet);
 	}
 	
+	public List<Termo> getTermos () {
+		return termos;
+	}
+	
+	public void adicionarTermo (Termo termo) {
+		this.termos.add(termo);
+	}
+	
+	public void removerTermo (Termo termo) {
+		this.termos.remove(termo);
+	}
 	
 }
