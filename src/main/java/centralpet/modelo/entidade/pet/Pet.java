@@ -139,5 +139,4 @@ public class Pet implements Serializable {
 		this.sexoPet = sexoPet;
 	}
 	
-	
 }
