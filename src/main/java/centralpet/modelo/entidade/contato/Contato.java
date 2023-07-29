@@ -2,15 +2,40 @@ package centralpet.modelo.entidade.contato;
 
 import java.io.Serializable;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.MapsId;
+import javax.persistence.OneToOne;
+import javax.persistence.Table;
+
+import centralpet.modelo.entidade.usuario.Usuario;
+
+@Entity
+@Table(name = "contato")
 public class Contato implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "id_contato")
 	private Long id;
 	
+	@Column(name = "email_contato", length = 50, nullable = false, unique = true)
 	private String email;
 	
+	@Column(name = "telefone_contato", length = 11, nullable = false, unique = true)
 	private String telefone;
+	
+	@OneToOne(fetch = FetchType.LAZY)
+	@MapsId
+	@JoinColumn(name = "id_usuario")
+	private Usuario usuario;
 	
 	public Contato () {}
 	
@@ -48,5 +73,15 @@ public class Contato implements Serializable {
 	public void setTelefone (String telefone) {
 		this.telefone = telefone;
 	}
+
+	public Usuario getUsuario() {
+		return usuario;
+	}
+
+	public void setUsuario(Usuario usuario) {
+		this.usuario = usuario;
+	}
+	
+	
 	
 }
