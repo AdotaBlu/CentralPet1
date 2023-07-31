@@ -4,13 +4,14 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToOne;
+import javax.persistence.OneToMany;
 
 import org.hibernate.annotations.Table;
 
@@ -34,10 +35,10 @@ public class Ong extends Usuario implements Serializable {
 	@Column(name = "cnpj_ong", length = 14, nullable = false, unique = true)
 	private String cnpj;
 	
-	@OneToOne(fetch = FetchType.LAZY)
+	@OneToMany(fetch = FetchType.LAZY,mappedBy = "ong", cascade = CascadeType.ALL, orphanRemoval = true)
 	private List<Pet> pets = new ArrayList<>();
 	
-	@OneToOne(fetch = FetchType.LAZY)
+	@OneToMany(fetch = FetchType.LAZY,mappedBy = "ong", cascade = CascadeType.ALL, orphanRemoval = true)
 	private List<Termo> termos = new ArrayList<>();
 	
 	public Ong () {}
