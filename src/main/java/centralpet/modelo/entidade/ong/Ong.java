@@ -4,22 +4,40 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.OneToOne;
+
+import org.hibernate.annotations.Table;
+
 import centralpet.modelo.entidade.contato.Contato;
 import centralpet.modelo.entidade.endereco.Endereco;
 import centralpet.modelo.entidade.pet.Pet;
 import centralpet.modelo.entidade.termo.Termo;
 import centralpet.modelo.entidade.usuario.Usuario;
 
+@Entity
+@Table(name = "ong")
 public class Ong extends Usuario implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "id_ong")
 	private Long id;
 	
+	@Column(name = "cnpj_ong", length = 14, nullable = false, unique = true)
 	private String cnpj;
 	
+	@OneToOne(fetch = FetchType.LAZY)
 	private List<Pet> pets = new ArrayList<>();
 	
+	@OneToOne(fetch = FetchType.LAZY)
 	private List<Termo> termos = new ArrayList<>();
 	
 	public Ong () {}
