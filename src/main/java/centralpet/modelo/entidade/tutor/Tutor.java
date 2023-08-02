@@ -5,26 +5,51 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
+
+import org.hibernate.annotations.Table;
+
 import centralpet.modelo.entidade.contato.Contato;
 import centralpet.modelo.entidade.endereco.Endereco;
 import centralpet.modelo.entidade.pet.Pet;
 import centralpet.modelo.entidade.usuario.Usuario;
 import centralpet.modelo.enumeracao.genero.GeneroTutor;
 
+@Entity
+@Table(name = "tutor")
 public class Tutor extends Usuario implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 	
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "id_tutor")
 	private Long id;
 	
+	@Column(name = "cpf_tutor", length = 11, nullable = false, unique = true)
 	private String cpf;
 	
+	@Column(name = "data_nascimento_tutor", nullable = false, unique = false)
 	private LocalDate dataNascimento;
 	
+	@Column(name = "genero_tutor", nullable = false, unique = false)
 	private GeneroTutor generoTutor;
 	
+	@OneToMany(fetch = FetchType.LAZY,mappedBy = "tutor", cascade = CascadeType.ALL, orphanRemoval = true)
 	private List<Pet> petsAdotados = new ArrayList<>();
 	
+	@ManyToMany(fetch = FetchType.LAZY, cascade = {CascadeType.PERSIST, CascadeType.MERGE})
+	@JoinTable(name = "pets_favoritos_tutor", joinColumns = @JoinColumn(name = "id_tutor"), inverseJoinColumns = @JoinColumn(name = "id_pet"))
 	private List<Pet> petsFavoritados = new ArrayList<>();
 	
 	public Tutor () {}
