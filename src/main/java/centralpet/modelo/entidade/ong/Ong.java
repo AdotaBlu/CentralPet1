@@ -12,8 +12,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
-
-import org.hibernate.annotations.Table;
+import javax.persistence.Table;
 
 import centralpet.modelo.entidade.contato.Contato;
 import centralpet.modelo.entidade.endereco.Endereco;

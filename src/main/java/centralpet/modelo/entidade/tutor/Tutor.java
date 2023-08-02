@@ -16,8 +16,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
-
-import org.hibernate.annotations.Table;
+import javax.persistence.Table;
 
 import centralpet.modelo.entidade.contato.Contato;
 import centralpet.modelo.entidade.endereco.Endereco;
