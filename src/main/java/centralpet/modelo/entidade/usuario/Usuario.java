@@ -31,25 +31,25 @@ public abstract class Usuario implements Serializable {
 	@Column(name = "id_usuario")
 	private Long id;
 
-	@Column(name = "nome", length = 45, nullable = false, unique = false)
+	@Column(name = "nome_usuario", length = 45, nullable = false, unique = false)
 	private String nome;
 
-	@Column(name = "endereco", nullable = false, unique = false)
+	@Column(name = "endereco_usuario", nullable = false, unique = false)
 	@OneToMany(fetch = FetchType.LAZY)
 	@MapsId
 	@JoinColumn(name = "id_endereco")
 	private Endereco endereco;
 
-	@Column(name = "contato", nullable = false, unique = false)
+	@Column(name = "contato_usuario", nullable = false, unique = false)
 	@OneToOne(fetch = FetchType.LAZY)
 	@MapsId
 	@JoinColumn(name = "id_contato")
 	private Contato contato;
 
-	@Column(name = "data_cadastro", nullable = false, unique = false)
+	@Column(name = "data_cadastro_usuario", nullable = false, unique = false)
 	private LocalDate dataCadastro;
 
-	@Column(name = "data_cadastro", nullable = true, unique = false)
+	@Column(name = "data_alteracao_cadastro_usuario", nullable = true, unique = false)
 	private LocalDate dataAlteracaoCadastro;
 
 	public Usuario () {}
