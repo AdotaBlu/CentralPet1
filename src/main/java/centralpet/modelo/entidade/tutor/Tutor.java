@@ -39,10 +39,10 @@ public class Tutor extends Usuario implements Serializable {
 	@Column(name = "cpf_tutor", length = 11, nullable = false, unique = true)
 	private String cpf;
 	
-	@Column(name = "dataNascimento", nullable = false, unique = false)
+	@Column(name = "data_nascimento_tutor", nullable = false, unique = false)
 	private LocalDate dataNascimento;
 	
-	@Column(name = "generoTutor", nullable = false, unique = false)
+	@Column(name = "genero_tutor", nullable = false, unique = false)
 	private GeneroTutor generoTutor;
 	
 	@OneToMany(fetch = FetchType.LAZY,mappedBy = "tutor", cascade = CascadeType.ALL, orphanRemoval = true)
