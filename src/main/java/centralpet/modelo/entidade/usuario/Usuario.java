@@ -46,10 +46,10 @@ public abstract class Usuario implements Serializable {
 	@JoinColumn(name = "id_contato")
 	private Contato contato;
 
-	@Column(name = "dataCadastro", nullable = false, unique = false)
+	@Column(name = "data_cadastro", nullable = false, unique = false)
 	private LocalDate dataCadastro;
 
-	@Column(name = "dataCadastro", nullable = true, unique = false)
+	@Column(name = "data_cadastro", nullable = true, unique = false)
 	private LocalDate dataAlteracaoCadastro;
 
 	public Usuario () {}
