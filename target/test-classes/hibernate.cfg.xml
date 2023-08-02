@@ -10,5 +10,13 @@
 		<property name="hibernate.connection.password">root</property>
 		<property name="show_sql">true</property>
 		<property name="hibernate.current_session_context_class">org.hibernate.context.internal.ThreadLocalSessionContext</property>
+		<mapping class="centralpet.modelo.entidade.endereco.Endereco"/>
+		<mapping class="centralpet.modelo.entidade.contato.Contato" />
+		<mapping class="centralpet.modelo.entidade.usuario.Usuario" />
+		<mapping class="centralpet.modelo.entidade.ong.Ong" />
+		<mapping class="centralpet.modelo.entidade.tutor.Tutor" />
+		<mapping class="centralpet.modelo.entidade.pet.Pet" />
+		<mapping class="centralpet.modelo.entidade.adocao.Adocao" />
+		<mapping class="centralpet.modelo.entidade.termo.Termo" />
 	</session-factory>
 </hibernate-configuration>
