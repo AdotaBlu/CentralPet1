@@ -8,8 +8,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-
-import org.hibernate.annotations.Table;
+import javax.persistence.Table;
 
 import centralpet.modelo.entidade.ong.Ong;
 import centralpet.modelo.enumeracao.pet.especie.EspeciePet;
