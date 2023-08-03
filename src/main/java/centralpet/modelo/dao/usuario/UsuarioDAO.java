@@ -6,6 +6,8 @@ import centralpet.modelo.entidade.usuario.Usuario;
 
 public interface UsuarioDAO {
 
+	void inserirUsuario(Usuario usuario);
+	
 	void deletarUsuario(Usuario usuario);
 	
 	void atualizarUsuario(Usuario usuario);
@@ -13,9 +15,5 @@ public interface UsuarioDAO {
 	List<Usuario> recuperarUsuario(Usuario id);
 	
 	List<Usuario> recuperarTodosUsuarios();
-	
-	List<Usuario> recuperarTodosUsuarioTutor();
-	
-	List<Usuario> recuperarTodosUsuarioOng();
 	
 }
