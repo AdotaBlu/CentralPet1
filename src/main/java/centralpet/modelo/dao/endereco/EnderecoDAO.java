@@ -14,9 +14,9 @@ public interface EnderecoDAO {
 
 	void atualizarEndereco(Endereco endereco);
 	
-	List<Endereco> recuperarEnderecos ();
+	List<Endereco> recuperarTodosEnderecos ();
 	
-	List<Endereco> recuperarEnderecoTutor (Tutor tutor);
+	List<Endereco> recuperarEnderecoTutor (Tutor id);
 	
-	List<Endereco> recuperarEnderecoOng (Ong ong);
+	List<Endereco> recuperarEnderecoOng (Ong id);
 }

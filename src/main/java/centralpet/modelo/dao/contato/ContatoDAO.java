@@ -14,7 +14,9 @@ public interface ContatoDAO {
 	
 	void atualizarContato(Contato contato);
 	
-	List<Contato> recuperarContatoTutor (Tutor tutor);
+	List<Contato> recuperarTodosContatos ();
 	
-	List<Contato> recuperarContatoOng (Ong ong);
+	List<Contato> recuperarContatoTutor (Tutor id);
+	
+	List<Contato> recuperarContatoOng (Ong id);
 }
