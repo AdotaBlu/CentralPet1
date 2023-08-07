@@ -10,8 +10,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.MapsId;
-import javax.persistence.OneToMany;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
@@ -33,15 +32,11 @@ public abstract class Usuario implements Serializable {
 	@Column(name = "nome_usuario", length = 45, nullable = false, unique = false)
 	private String nome;
 
-	@Column(name = "endereco_usuario", nullable = false, unique = false)
-	@OneToMany(fetch = FetchType.LAZY)
-	@MapsId
+	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "id_endereco")
 	private Endereco endereco;
 
-	@Column(name = "contato_usuario", nullable = false, unique = false)
 	@OneToOne(fetch = FetchType.LAZY)
-	@MapsId
 	@JoinColumn(name = "id_contato")
 	private Contato contato;
 

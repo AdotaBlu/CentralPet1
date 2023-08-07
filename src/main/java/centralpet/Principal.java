@@ -10,8 +10,8 @@ public class Principal {
 		
 		ContatoDAO contatoDAO = new ContatoDAOImpl();
 		
-		String email = "erikuller.profissional@gmail.com";
-		String telefone = "47 991481932";
+		String email = "erikaal@gmail.com";
+		String telefone = "4794222932";
 		
 		Contato contato = new Contato();
 		
@@ -19,6 +19,7 @@ public class Principal {
 		contato.setTelefone(telefone);
 		
 		contatoDAO.inserirContato(contato);
+		
 		
 	}
 }

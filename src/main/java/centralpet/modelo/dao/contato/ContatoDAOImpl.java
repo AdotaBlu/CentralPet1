@@ -2,11 +2,16 @@ package centralpet.modelo.dao.contato;
 
 import java.util.List;
 
+import javax.persistence.criteria.CriteriaBuilder;
+import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.Join;
+import javax.persistence.criteria.ParameterExpression;
+import javax.persistence.criteria.Root;
+
 import org.hibernate.Session;
 
 import centralpet.modelo.entidade.contato.Contato;
-import centralpet.modelo.entidade.ong.Ong;
-import centralpet.modelo.entidade.tutor.Tutor;
+import centralpet.modelo.entidade.usuario.Usuario;
 import centralpet.modelo.factory.conexao.ConexaoFactory;
 
 public class ContatoDAOImpl implements ContatoDAO{
@@ -17,7 +22,7 @@ public class ContatoDAOImpl implements ContatoDAO{
 		fabrica = new ConexaoFactory();
 	}
 	
-	public void inserirContato (Contato contato) {
+	public void inserirContato(Contato contato) {
 		
 		Session sessao = null;
 		
@@ -43,38 +48,148 @@ public class ContatoDAOImpl implements ContatoDAO{
 			if (sessao != null) {
 				sessao.close();
 			}
-		}
-		
+		}	
 	}
 
 
 	public void deletarContato(Contato contato) {
-		// TODO Auto-generated method stub
 		
+		Session sessao = null;
+		
+		try {
+			
+			sessao = fabrica.getConexao().openSession();
+			sessao.beginTransaction();
+			
+			sessao.delete(contato);
+			
+			sessao.getTransaction().commit();
+		
+		} catch(Exception sqlException) {
+			
+			sqlException.printStackTrace();
+			
+			if(sessao.getTransaction() != null) {
+				sessao.getTransaction().rollback();
+			}
+			
+		} finally {
+			
+			if(sessao != null) {
+				sessao.close();
+			}
+		}
 	}
 
 
 	public void atualizarContato(Contato contato) {
-		// TODO Auto-generated method stub
 		
+		Session sessao = null;
+		
+		try {
+			
+			sessao = fabrica.getConexao().openSession();
+			sessao.beginTransaction();
+			
+			sessao.update(contato);
+			
+			sessao.getTransaction().commit();
+			
+		} catch (Exception sqlException) {
+			
+			sqlException.printStackTrace();
+			
+			if(sessao.getTransaction() != null) {
+				sessao.getTransaction().rollback();
+			}
+		
+		} finally {
+			
+			if(sessao != null) {
+				sessao.close();
+			}
+		}
 	}
 
 
 	public List<Contato> recuperarTodosContatos() {
-		// TODO Auto-generated method stub
-		return null;
+		
+		Session sessao = null;
+		List<Contato> contatos = null;
+		
+		try {
+			sessao = fabrica.getConexao().openSession();
+			sessao.beginTransaction();
+			
+			CriteriaBuilder construtor = sessao.getCriteriaBuilder();
+			
+			CriteriaQuery<Contato> criteria = construtor.createQuery(Contato.class);
+			Root<Contato> raizContato = criteria.from(Contato.class);
+			
+			criteria.select(raizContato);
+			
+			contatos = sessao.createQuery(criteria).getResultList();
+			
+			sessao.getTransaction().commit();
+		
+		} catch (Exception sqlException) {
+			
+			sqlException.printStackTrace();
+			
+			if(sessao.getTransaction() != null) {
+				sessao.getTransaction().rollback();
+				
+			}
+		} finally {
+			
+			if(sessao != null) {
+				sessao.close();
+			}
+		}
+		
+		return contatos;
 	}
 
 
-	public List<Contato> recuperarContatoTutor(Tutor id) {
-		// TODO Auto-generated method stub
-		return null;
-	}
+	public Contato recuperarContatoUsuario(Usuario usuario) {
+		
+		Session sessao = null;
+		Contato contato = null;
+		
+		try {
+			sessao = fabrica.getConexao().openSession();
+			sessao.beginTransaction();
+			
+			CriteriaBuilder construtor = sessao.getCriteriaBuilder();
+			
+			CriteriaQuery<Contato> criteria = construtor.createQuery(Contato.class);
+			Root<Contato> raizContato = criteria.from(Contato.class);
+			
+			Join<Contato, Usuario> juncaoUsuario = raizContato.join(Contato_.usuario);
+			
+			ParameterExpression<String> nomeUsuario = construtor.parameter(String.class);
+			criteria.where(construtor.equal(juncaoUsuario.get(Usuario_.nome), nomeUsuario));
 
+			contato = sessao.createQuery(criteria).setParameter(nomeUsuario, usuario.getNome()).getSingleResult();
+			
+			sessao.getTransaction().commit();
 
-	public List<Contato> recuperarContatoOng(Ong id) {
-		// TODO Auto-generated method stub
-		return null;
+		} catch (Exception sqlException) {
+			
+			sqlException.printStackTrace();
+			
+			if(sessao.getTransaction() != null) {
+				sessao.getTransaction().rollback();
+				
+			}
+		} finally {
+			
+			if(sessao != null) {
+				sessao.close();
+			}
+		}
+		
+		return contato;
 	}
 	
 }

@@ -18,6 +18,7 @@ import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import centralpet.modelo.entidade.adocao.Adocao;
 import centralpet.modelo.entidade.contato.Contato;
 import centralpet.modelo.entidade.endereco.Endereco;
 import centralpet.modelo.entidade.pet.Pet;
@@ -45,7 +46,7 @@ public class Tutor extends Usuario implements Serializable {
 	private GeneroTutor generoTutor;
 	
 	@OneToMany(fetch = FetchType.LAZY,mappedBy = "tutor", cascade = CascadeType.ALL, orphanRemoval = true)
-	private List<Pet> petsAdotados = new ArrayList<>();
+	private List<Adocao> adocoes = new ArrayList<>();
 	
 	@ManyToMany(fetch = FetchType.LAZY, cascade = {CascadeType.PERSIST, CascadeType.MERGE})
 	@JoinTable(name = "pets_favoritos_tutor", joinColumns = @JoinColumn(name = "id_tutor"), inverseJoinColumns = @JoinColumn(name = "id_pet"))
@@ -100,16 +101,16 @@ public class Tutor extends Usuario implements Serializable {
 		this.generoTutor = generoTutor;
 	}
 	
-	public List<Pet> getPetsAdotados() {
-		return petsAdotados;
+	public List<Adocao> getAdocoes() {
+		return adocoes;
 	}
 	
-	public void adotarPet (Pet pet) {
-		this.petsAdotados.add(pet);
+	public void adocaoFeita (Adocao adocao) {
+		this.adocoes.add(adocao);
 	}
 	
-	public void devolverPet (Pet pet) {
-		this.petsAdotados.remove(pet);
+	public void adocaoDesfeita (Adocao adocao) {
+		this.adocoes.remove(adocao);
 	}
 	
 	public List<Pet> getPetsFavoritados() {
