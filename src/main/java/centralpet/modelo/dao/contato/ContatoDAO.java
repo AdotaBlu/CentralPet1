@@ -3,8 +3,7 @@ package centralpet.modelo.dao.contato;
 import java.util.List;
 
 import centralpet.modelo.entidade.contato.Contato;
-import centralpet.modelo.entidade.ong.Ong;
-import centralpet.modelo.entidade.tutor.Tutor;
+import centralpet.modelo.entidade.usuario.Usuario;
 
 public interface ContatoDAO {
 
@@ -16,7 +15,6 @@ public interface ContatoDAO {
 	
 	List<Contato> recuperarTodosContatos ();
 	
-	List<Contato> recuperarContatoTutor (Tutor id);
+	Contato recuperarContatoUsuario(Usuario usuario);
 	
-	List<Contato> recuperarContatoOng (Ong id);
 }

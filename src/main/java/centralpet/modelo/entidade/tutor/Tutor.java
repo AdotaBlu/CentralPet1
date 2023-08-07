@@ -18,7 +18,7 @@ import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
-import centralpet.modelo.entidade.contato.Contato;
+import centralpet.modelo.entidade.adocao.Adocao;
 import centralpet.modelo.entidade.endereco.Endereco;
 import centralpet.modelo.entidade.pet.Pet;
 import centralpet.modelo.entidade.usuario.Usuario;
@@ -45,7 +45,7 @@ public class Tutor extends Usuario implements Serializable {
 	private GeneroTutor generoTutor;
 	
 	@OneToMany(fetch = FetchType.LAZY,mappedBy = "tutor", cascade = CascadeType.ALL, orphanRemoval = true)
-	private List<Pet> petsAdotados = new ArrayList<>();
+	private List<Adocao> adocoes = new ArrayList<>();
 	
 	@ManyToMany(fetch = FetchType.LAZY, cascade = {CascadeType.PERSIST, CascadeType.MERGE})
 	@JoinTable(name = "pets_favoritos_tutor", joinColumns = @JoinColumn(name = "id_tutor"), inverseJoinColumns = @JoinColumn(name = "id_pet"))
@@ -53,15 +53,15 @@ public class Tutor extends Usuario implements Serializable {
 	
 	public Tutor () {}
 	
-	public Tutor (String nome, Endereco endereco, Contato contato, String cpf, LocalDate datanascimento, GeneroTutor generoTutor) {
-		super(nome, endereco, contato);
+	public Tutor (String nome, Endereco endereco, String cpf, LocalDate datanascimento, GeneroTutor generoTutor) {
+		super(nome, endereco);
 		setCpf(cpf);
 		setDataNascimento(datanascimento);
 		setGeneroTutor(generoTutor);
 	}
 	
-	public Tutor (String nome, Endereco endereco, Contato contato, Long id, String cpf, LocalDate datanascimento, GeneroTutor generoTutor) {
-		super(nome, endereco, contato);
+	public Tutor (String nome, Endereco endereco, Long id, String cpf, LocalDate datanascimento, GeneroTutor generoTutor) {
+		super(nome, endereco);
 		setId(id);
 		setCpf(cpf);
 		setDataNascimento(datanascimento);
@@ -100,16 +100,16 @@ public class Tutor extends Usuario implements Serializable {
 		this.generoTutor = generoTutor;
 	}
 	
-	public List<Pet> getPetsAdotados() {
-		return petsAdotados;
+	public List<Adocao> getAdocoes() {
+		return adocoes;
 	}
 	
-	public void adotarPet (Pet pet) {
-		this.petsAdotados.add(pet);
+	public void adocaoFeita (Adocao adocao) {
+		this.adocoes.add(adocao);
 	}
 	
-	public void devolverPet (Pet pet) {
-		this.petsAdotados.remove(pet);
+	public void adocaoDesfeita (Adocao adocao) {
+		this.adocoes.remove(adocao);
 	}
 	
 	public List<Pet> getPetsFavoritados() {

@@ -9,8 +9,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.MapsId;
-import javax.persistence.OneToOne;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 import centralpet.modelo.entidade.ong.Ong;
@@ -26,11 +25,9 @@ public class Termo implements Serializable {
 	@Column(name = "id_termo")
 	private Long id;
 	
-	@Column(name = "termo_ong", nullable = false, unique = false)
-	@OneToOne(fetch = FetchType.LAZY)
-	@MapsId
+	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "id_ong")
-	private Ong ongResponsavel;
+	private Ong ong;
 	
 	@Column(name = "termo", length = 5000, nullable = false, unique = false)
 	private String termo;
@@ -56,12 +53,12 @@ public class Termo implements Serializable {
 		this.id = id;
 	}
 
-	public Ong getOngResponsavel() {
-		return ongResponsavel;
+	public Ong getOng() {
+		return ong;
 	}
 
-	public void setOngResponsavel(Ong ongResponsavel) {
-		this.ongResponsavel = ongResponsavel;
+	public void setOngResponsavel(Ong ong) {
+		this.ong = ong;
 	}
 
 	public String getTermo() {

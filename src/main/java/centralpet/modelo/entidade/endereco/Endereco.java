@@ -1,16 +1,20 @@
 package centralpet.modelo.entidade.endereco;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.MapsId;
-import javax.persistence.OneToOne;
+
+
+import javax.persistence.OneToMany;
+
 import javax.persistence.Table;
 
 import centralpet.modelo.entidade.usuario.Usuario;
@@ -41,10 +45,8 @@ public class Endereco implements Serializable {
 	@Column(name = "ponto_referencia_endereco", length = 45, nullable = true, unique = false)
 	private String pontoReferencia;
 	
-	@OneToOne(fetch = FetchType.LAZY)
-	@MapsId
-	@JoinColumn(name = "id_usuario")
-	private Usuario usuario;
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "endereco", cascade = CascadeType.ALL, orphanRemoval = true)
+	private List<Usuario> usuarios = new ArrayList<Usuario>();
 	
 	public Endereco () {}
 	
@@ -113,12 +115,12 @@ public class Endereco implements Serializable {
 		this.pontoReferencia = pontoReferencia;
 	}
 
-	public Usuario getUsuario() {
-		return usuario;
+	public List<Usuario> getUsuarios() {
+		return usuarios;
 	}
 
-	public void setUsuario(Usuario usuario) {
-		this.usuario = usuario;
+	public void adicionarUsuario (Usuario usuario) {
+		this.usuarios.add(usuario);
 	}
 }
 
