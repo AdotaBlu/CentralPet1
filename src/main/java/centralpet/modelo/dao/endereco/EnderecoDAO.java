@@ -3,8 +3,7 @@ package centralpet.modelo.dao.endereco;
 import java.util.List;
 
 import centralpet.modelo.entidade.endereco.Endereco;
-import centralpet.modelo.entidade.ong.Ong;
-import centralpet.modelo.entidade.tutor.Tutor;
+import centralpet.modelo.entidade.usuario.Usuario;
 
 public interface EnderecoDAO {
 
@@ -16,7 +15,5 @@ public interface EnderecoDAO {
 	
 	List<Endereco> recuperarTodosEnderecos ();
 	
-	List<Endereco> recuperarEnderecoTutor (Tutor id);
-	
-	List<Endereco> recuperarEnderecoOng (Ong id);
+	Endereco recuperarEnderecoUsuario (Usuario usuario);
 }
