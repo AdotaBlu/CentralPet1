@@ -19,7 +19,6 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import centralpet.modelo.entidade.adocao.Adocao;
-import centralpet.modelo.entidade.contato.Contato;
 import centralpet.modelo.entidade.endereco.Endereco;
 import centralpet.modelo.entidade.pet.Pet;
 import centralpet.modelo.entidade.usuario.Usuario;
@@ -54,15 +53,15 @@ public class Tutor extends Usuario implements Serializable {
 	
 	public Tutor () {}
 	
-	public Tutor (String nome, Endereco endereco, Contato contato, String cpf, LocalDate datanascimento, GeneroTutor generoTutor) {
-		super(nome, endereco, contato);
+	public Tutor (String nome, Endereco endereco, String cpf, LocalDate datanascimento, GeneroTutor generoTutor) {
+		super(nome, endereco);
 		setCpf(cpf);
 		setDataNascimento(datanascimento);
 		setGeneroTutor(generoTutor);
 	}
 	
-	public Tutor (String nome, Endereco endereco, Contato contato, Long id, String cpf, LocalDate datanascimento, GeneroTutor generoTutor) {
-		super(nome, endereco, contato);
+	public Tutor (String nome, Endereco endereco, Long id, String cpf, LocalDate datanascimento, GeneroTutor generoTutor) {
+		super(nome, endereco);
 		setId(id);
 		setCpf(cpf);
 		setDataNascimento(datanascimento);

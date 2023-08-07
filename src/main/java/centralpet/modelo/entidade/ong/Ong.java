@@ -15,7 +15,6 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import centralpet.modelo.entidade.adocao.Adocao;
-import centralpet.modelo.entidade.contato.Contato;
 import centralpet.modelo.entidade.endereco.Endereco;
 import centralpet.modelo.entidade.pet.Pet;
 import centralpet.modelo.entidade.termo.Termo;
@@ -46,13 +45,13 @@ public class Ong extends Usuario implements Serializable {
 	
 	public Ong () {}
 	
-	public Ong (String nome, Endereco endereco, Contato contato, String cnpj) {
-		super(nome, endereco, contato);
+	public Ong (String nome, Endereco endereco, String cnpj) {
+		super(nome, endereco);
 		setCnpj(cnpj);
 	}
 	
-	public Ong (String nome, Endereco endereco, Contato contato, Long id, String cnpj) {
-		super(nome, endereco, contato);
+	public Ong (String nome, Endereco endereco, Long id, String cnpj) {
+		super(nome, endereco);
 		setId(id);
 		setCnpj(cnpj);
 	}

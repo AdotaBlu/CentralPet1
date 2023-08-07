@@ -11,7 +11,9 @@ import javax.persistence.criteria.Root;
 import org.hibernate.Session;
 
 import centralpet.modelo.entidade.contato.Contato;
+import centralpet.modelo.entidade.contato.Contato_;
 import centralpet.modelo.entidade.usuario.Usuario;
+import centralpet.modelo.entidade.usuario.Usuario_;
 import centralpet.modelo.factory.conexao.ConexaoFactory;
 
 public class ContatoDAOImpl implements ContatoDAO{
@@ -165,10 +167,10 @@ public class ContatoDAOImpl implements ContatoDAO{
 			CriteriaQuery<Contato> criteria = construtor.createQuery(Contato.class);
 			Root<Contato> raizContato = criteria.from(Contato.class);
 			
-			Join<Contato, Usuario> juncaoUsuario = raizContato.join(Contato_.usuario);
+			Join<Contato, Usuario> juncaoUsuario = raizContato.join(Contato_.USUARIO);
 			
 			ParameterExpression<String> nomeUsuario = construtor.parameter(String.class);
-			criteria.where(construtor.equal(juncaoUsuario.get(Usuario_.nome), nomeUsuario));
+			criteria.where(construtor.equal(juncaoUsuario.get(Usuario_.NOME), nomeUsuario));
 
 			contato = sessao.createQuery(criteria).setParameter(nomeUsuario, usuario.getNome()).getSingleResult();
 			
