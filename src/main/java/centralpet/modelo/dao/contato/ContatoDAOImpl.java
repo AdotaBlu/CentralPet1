@@ -169,10 +169,10 @@ public class ContatoDAOImpl implements ContatoDAO{
 			
 			Join<Contato, Usuario> juncaoUsuario = raizContato.join(Contato_.USUARIO);
 			
-			ParameterExpression<String> nomeUsuario = construtor.parameter(String.class);
-			criteria.where(construtor.equal(juncaoUsuario.get(Usuario_.NOME), nomeUsuario));
+			ParameterExpression<Long> idUsuario = construtor.parameter(Long.class);
+			criteria.where(construtor.equal(juncaoUsuario.get(Usuario_.ID), idUsuario));
 
-			contato = sessao.createQuery(criteria).setParameter(nomeUsuario, usuario.getNome()).getSingleResult();
+			contato = sessao.createQuery(criteria).setParameter(idUsuario, usuario.getId()).getSingleResult();
 			
 			sessao.getTransaction().commit();
 
