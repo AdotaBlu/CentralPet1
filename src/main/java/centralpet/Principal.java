@@ -2,23 +2,30 @@ package centralpet;
 
 import centralpet.modelo.dao.contato.ContatoDAO;
 import centralpet.modelo.dao.contato.ContatoDAOImpl;
+import centralpet.modelo.dao.endereco.EnderecoDAO;
+import centralpet.modelo.dao.endereco.EnderecoDAOImpl;
 import centralpet.modelo.entidade.contato.Contato;
+import centralpet.modelo.entidade.endereco.Endereco;
 
 public class Principal {
 
 	public static void main(String[] args) {
 		
-		ContatoDAO contatoDAO = new ContatoDAOImpl();
+		EnderecoDAO enderecoDAO = new EnderecoDAOImpl();
 		
-		String email = "erikaal@gmail.com";
-		String telefone = "4794222932";
+		String logradouro = "rua emilio tallmann";
+		short numero = 1755;
+		String bairro = "Progresso";
+		String cep = "89026001";
 		
-		Contato contato = new Contato();
+		Endereco endereco = new Endereco();
 		
-		contato.setEmail(email);
-		contato.setTelefone(telefone);
+		endereco.setLogradouro(logradouro);
+		endereco.setNumero(numero);
+		endereco.setBairro(bairro);
+		endereco.setCep(cep);
 		
-		contatoDAO.inserirContato(contato);
+		enderecoDAO.inserirEndereco(endereco);
 		
 		
 	}
