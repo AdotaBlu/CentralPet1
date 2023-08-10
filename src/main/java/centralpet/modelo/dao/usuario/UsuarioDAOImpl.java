@@ -1,17 +1,15 @@
 package centralpet.modelo.dao.usuario;
 
+import java.util.List;
+
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
-import javax.persistence.criteria.Join;
-import javax.persistence.criteria.JoinType;
-import javax.persistence.criteria.ParameterExpression;
 import javax.persistence.criteria.Root;
 
 import org.hibernate.Session;
 
 import centralpet.modelo.entidade.contato.Contato;
 import centralpet.modelo.entidade.usuario.Usuario;
-import centralpet.modelo.entidade.usuario.Usuario_;
 import centralpet.modelo.factory.conexao.ConexaoFactory;
 
 public class UsuarioDAOImpl implements UsuarioDAO {
@@ -52,7 +50,7 @@ private ConexaoFactory fabrica;
 	}
 
 
-	public void deletarContato(Usuario usuario) {
+	public void deletarUsuario(Usuario usuario) {
 		
 		Session sessao = null;
 		
@@ -82,7 +80,7 @@ private ConexaoFactory fabrica;
 	}
 
 
-	public void atualizarContato(Usuario usuario) {
+	public void atualizarUsuario(Usuario usuario) {
 		
 		Session sessao = null;
 		
@@ -111,7 +109,7 @@ private ConexaoFactory fabrica;
 		}
 	}
 	
-	public String recuperarEmailUsuario (Contato contato) {
+	public String recuperarEmailUsuario(Contato contato) {
 		
 		Session sessao = null;
 		String email = null;
@@ -144,6 +142,45 @@ private ConexaoFactory fabrica;
 			}
 		}
 		return email;
+	}
+	
+	public List<Usuario> recuperarTodosUsuarios() {
+		
+		Session sessao = null;
+		List<Usuario> usuarios = null;
+		
+		try {
+			sessao = fabrica.getConexao().openSession();
+			sessao.beginTransaction();
+			
+			CriteriaBuilder construtor = sessao.getCriteriaBuilder();
+			
+			CriteriaQuery<Usuario> criteria = construtor.createQuery(Usuario.class);
+			Root<Usuario> raizUsuario = criteria.from(Usuario.class);
+			
+			criteria.select(raizUsuario);
+			
+			usuarios = sessao.createQuery(criteria).getResultList();
+			
+			sessao.getTransaction().commit();
+		
+		} catch (Exception sqlException) {
+			
+			sqlException.printStackTrace();
+			
+			if(sessao.getTransaction() != null) {
+				sessao.getTransaction().rollback();
+				
+			}
+		} finally {
+			
+			if(sessao != null) {
+				sessao.close();
+			}
+		}
+		
+		return usuarios;
+		
 	}
 	
 }
