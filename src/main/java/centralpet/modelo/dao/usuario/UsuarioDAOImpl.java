@@ -137,9 +137,6 @@ private ConexaoFactory fabrica;
 			
 			email = sessao.createQuery(criteria).setParameter(idUsusario, usuario.getId()).getSingleResult();
 			
-			
-			
-			
 		} catch (Exception sqlException) {
 			
 			sqlException.printStackTrace();
