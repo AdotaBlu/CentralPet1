@@ -16,10 +16,6 @@ public interface TutorDAO {
 	
 	List<Tutor> recuperarTutor(Tutor id);
 	
-	List<Tutor> recuperarTutorCPF(Tutor cpf);
-	
-	List<Tutor> recuperarTutorEmail(Tutor email);
-	
-	List<Tutor> recuperarTutorNome(Tutor nome);
+	List<Tutor> recuperarPetsFavoritados(Tutor pets);
 
 }

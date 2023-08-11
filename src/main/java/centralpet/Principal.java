@@ -1,17 +1,18 @@
 package centralpet;
 
-import centralpet.modelo.dao.contato.ContatoDAO;
-import centralpet.modelo.dao.contato.ContatoDAOImpl;
+
+
 import centralpet.modelo.dao.endereco.EnderecoDAO;
 import centralpet.modelo.dao.endereco.EnderecoDAOImpl;
-import centralpet.modelo.entidade.contato.Contato;
 import centralpet.modelo.entidade.endereco.Endereco;
+
 
 public class Principal {
 
 	public static void main(String[] args) {
 		
 		EnderecoDAO enderecoDAO = new EnderecoDAOImpl();
+		
 		
 		String logradouro = "rua emilio tallmann";
 		short numero = 1755;
@@ -28,5 +29,15 @@ public class Principal {
 		enderecoDAO.inserirEndereco(endereco);
 		
 		
-	}
+		/*
+		 * String nome = "Eriks"; Endereco endereco1 = endereco; LocalDate dataCadastro
+		 * = null;
+		 * 
+		 * Usuario usuario = new Usuario();
+		 * 
+		 * usuario.setNome(nome); usuario.setEndereco(endereco1);
+		 * usuario.setDataCadastro(dataCadastro);
+		 * 
+		 * usuarioDAO.inserirUsuario(usuario);
+		 */	}
 }
