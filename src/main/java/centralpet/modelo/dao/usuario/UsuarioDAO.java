@@ -13,7 +13,7 @@ public interface UsuarioDAO {
 	
 	void atualizarUsuario(Usuario usuario);
 	
-	String recuperarEmailUsuario(Contato contato);
+	String recuperarEmailUsuario(Usuario usuario);
 	
 	List<Usuario> recuperarTodosUsuarios();
 	

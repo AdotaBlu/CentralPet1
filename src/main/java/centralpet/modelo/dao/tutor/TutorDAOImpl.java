@@ -9,8 +9,13 @@ import javax.persistence.criteria.Join;
 import javax.persistence.criteria.ParameterExpression;
 import javax.persistence.criteria.Root;
 
+import centralpet.modelo.entidade.contato.Contato;
+import centralpet.modelo.entidade.contato.Contato_;
+import centralpet.modelo.entidade.pet.Pet;
 import centralpet.modelo.entidade.tutor.Tutor;
+import centralpet.modelo.entidade.tutor.Tutor_;
 import centralpet.modelo.entidade.usuario.Usuario;
+import centralpet.modelo.entidade.usuario.Usuario_;
 import centralpet.modelo.factory.conexao.ConexaoFactory;
 
 //Classe TutorDAOImpl implementa a classe TutorDAO
@@ -192,57 +197,110 @@ public class TutorDAOImpl implements TutorDAO {
 		return tutores;
 
 	}
-	
+
 	// Método de recuperar todos tutor a partir do ID
 
-		public Tutor recuperarTutor(Usuario usuario) {
+	public Tutor recuperarTutor(Usuario usuario) {
 
-			org.hibernate.Session sessao = null;
+		org.hibernate.Session sessao = null;
 
-			Tutor tutor = null;
+		Tutor tutor = null;
 
-			try {
+		try {
 
-				sessao = fabrica.getConexao().openSession();
+			sessao = fabrica.getConexao().openSession();
 
-				sessao.beginTransaction();
+			sessao.beginTransaction();
 
-				CriteriaBuilder construtor = sessao.getCriteriaBuilder();
+			CriteriaBuilder construtor = sessao.getCriteriaBuilder();
 
-				CriteriaQuery<Tutor> criteria = construtor.createQuery(Tutor.class);
+			CriteriaQuery<Tutor> criteria = construtor.createQuery(Tutor.class);
 
-				Root<Tutor> raizTutor = criteria.from(Tutor.class);
-				Join<Tutor, Usuario> juncaoUsuario = raizTutor.join(Tutor_.USUARIOS);
+			Root<Tutor> raizTutor = criteria.from(Tutor.class);
+			Join<Tutor, Usuario> juncaoUsuario = raizTutor.join(Usuario_.ID);
 
-				ParameterExpression<Long> idUsuario = construtor.parameter(Long.class);
+			// Só para comparar com o equals
+			ParameterExpression<Long> idUsuario = construtor.parameter(Long.class);
 
-				criteria.where(construtor.equal(juncaoUsuario.get(Usuario_.ID), idUsuario));
+			criteria.where(construtor.equal(juncaoUsuario.get(Usuario_.ID), idUsuario));
 
-				tutor = sessao.createQuery(criteria).setParameter(idUsuario, usuario.getId()).getSingleResult();
+			tutor = sessao.createQuery(criteria).setParameter(idUsuario, usuario.getId()).getSingleResult();
 
-				sessao.getTransaction().commit();
+			sessao.getTransaction().commit();
 
-			} catch (Exception sqlException) {
+		} catch (Exception sqlException) {
 
-				sqlException.printStackTrace();
+			sqlException.printStackTrace();
 
-				if (sessao.getTransaction() != null) {
+			if (sessao.getTransaction() != null) {
 
-					sessao.getTransaction().rollback();
-
-				}
-
-			} finally {
-
-				if (sessao != null) {
-
-					sessao.close();
-
-				}
+				sessao.getTransaction().rollback();
 
 			}
 
-			return tutor;
+		} finally {
+
+			if (sessao != null) {
+
+				sessao.close();
+
+			}
 
 		}
+
+		return tutor;
+
+	}
+
+	public List<Pet> recuperarPetsFavoritados(Tutor tutor) {
+		org.hibernate.Session sessao = null;
+
+		List<Pet> pets = null;
+
+		try {
+
+			sessao = fabrica.getConexao().openSession();
+
+			sessao.beginTransaction();
+
+			CriteriaBuilder construtor = sessao.getCriteriaBuilder();
+
+			CriteriaQuery<Pet> criteria = construtor.createQuery(Pet.class);
+
+			Root<Tutor> raizTutor = criteria.from(Tutor.class);
+
+			Join<Tutor, Pet> juncaoPets = raizTutor.join(Tutor_.PETS_FAVORITADOS);
+
+			ParameterExpression<Long> idTutor = construtor.parameter(Long.class);
+
+			criteria.where(construtor.equal(juncaoPets.get(Tutor_.ID), idTutor));
+
+			pets = sessao.createQuery(criteria).setParameter(idTutor, tutor.getId()).getResultList();
+
+			sessao.getTransaction().commit();
+
+		} catch (Exception sqlException) {
+
+			sqlException.printStackTrace();
+
+			if (sessao.getTransaction() != null) {
+
+				sessao.getTransaction().rollback();
+
+			}
+
+		} finally {
+
+			if (sessao != null) {
+
+				sessao.close();
+
+			}
+
+		}
+
+		return pets;
+
+	}
+
 }
