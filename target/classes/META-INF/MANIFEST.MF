@@ -1,5 +1,9 @@
 Manifest-Version: 1.0
+<<<<<<< HEAD
 Built-By: erik.uller
+=======
+Built-By: lorenco.oliveira
+>>>>>>> 9d863b4bda202f80ae3d775ede36da2b0ad13953
 Build-Jdk: 20.0.1
 Created-By: Maven Integration for Eclipse
 

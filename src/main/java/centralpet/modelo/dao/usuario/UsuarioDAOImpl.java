@@ -4,8 +4,11 @@ import java.util.List;
 
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
+<<<<<<< HEAD
 import javax.persistence.criteria.Join;
 import javax.persistence.criteria.ParameterExpression;
+=======
+>>>>>>> 9d863b4bda202f80ae3d775ede36da2b0ad13953
 import javax.persistence.criteria.Root;
 
 import org.hibernate.Session;
@@ -13,7 +16,6 @@ import org.hibernate.Session;
 import centralpet.modelo.entidade.contato.Contato;
 import centralpet.modelo.entidade.contato.Contato_;
 import centralpet.modelo.entidade.usuario.Usuario;
-import centralpet.modelo.entidade.usuario.Usuario_;
 import centralpet.modelo.factory.conexao.ConexaoFactory;
 
 public class UsuarioDAOImpl implements UsuarioDAO {
@@ -113,7 +115,11 @@ private ConexaoFactory fabrica;
 		}
 	}
 	
+<<<<<<< HEAD
 	public String recuperarEmailUsuario (Usuario usuario) {
+=======
+	public String recuperarEmailUsuario(Contato contato) {
+>>>>>>> 9d863b4bda202f80ae3d775ede36da2b0ad13953
 		
 		Session sessao = null;
 		String email = null;
@@ -155,6 +161,7 @@ private ConexaoFactory fabrica;
 	}
 	
 	public List<Usuario> recuperarTodosUsuarios() {
+<<<<<<< HEAD
 	
 	Session sessao = null;
 
@@ -199,4 +206,44 @@ private ConexaoFactory fabrica;
 	}
 	return usuarios;
 	}
+=======
+		
+		Session sessao = null;
+		List<Usuario> usuarios = null;
+		
+		try {
+			sessao = fabrica.getConexao().openSession();
+			sessao.beginTransaction();
+			
+			CriteriaBuilder construtor = sessao.getCriteriaBuilder();
+			
+			CriteriaQuery<Usuario> criteria = construtor.createQuery(Usuario.class);
+			Root<Usuario> raizUsuario = criteria.from(Usuario.class);
+			
+			criteria.select(raizUsuario);
+			
+			usuarios = sessao.createQuery(criteria).getResultList();
+			
+			sessao.getTransaction().commit();
+		
+		} catch (Exception sqlException) {
+			
+			sqlException.printStackTrace();
+			
+			if(sessao.getTransaction() != null) {
+				sessao.getTransaction().rollback();
+				
+			}
+		} finally {
+			
+			if(sessao != null) {
+				sessao.close();
+			}
+		}
+		
+		return usuarios;
+		
+	}
+	
+>>>>>>> 9d863b4bda202f80ae3d775ede36da2b0ad13953
 }
