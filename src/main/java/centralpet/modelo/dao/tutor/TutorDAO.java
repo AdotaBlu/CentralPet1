@@ -4,6 +4,7 @@ import java.util.List;
 
 import centralpet.modelo.entidade.pet.Pet;
 import centralpet.modelo.entidade.tutor.Tutor;
+import centralpet.modelo.entidade.usuario.Usuario;
 
 public interface TutorDAO {
 
@@ -15,7 +16,7 @@ public interface TutorDAO {
 
 	List<Tutor> recuperarTodosTutores();
 
-	List<Tutor> recuperarTutor(Tutor id);
+	Tutor recuperarTutor(Usuario usuario);
 
 	List<Pet> recuperarPetsFavoritados(Tutor pets);
 
