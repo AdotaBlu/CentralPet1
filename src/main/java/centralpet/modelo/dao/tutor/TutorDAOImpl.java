@@ -148,56 +148,6 @@ public class TutorDAOImpl implements TutorDAO {
 
 	}
 
-	// Método de recuperar todos os tutores
-
-	public List<Tutor> recuperarTodosTutores() {
-
-		org.hibernate.Session sessao = null;
-
-		List<Tutor> tutores = null;
-
-		try {
-
-			sessao = fabrica.getConexao().openSession();
-
-			sessao.beginTransaction();
-
-			CriteriaBuilder construtor = sessao.getCriteriaBuilder();
-
-			CriteriaQuery<Tutor> criteria = construtor.createQuery(Tutor.class);
-
-			Root<Tutor> raizTutor = criteria.from(Tutor.class);
-
-			criteria.select(raizTutor);
-
-			tutores = sessao.createQuery(criteria).getResultList();
-
-			sessao.getTransaction().commit();
-
-		} catch (Exception sqlException) {
-
-			sqlException.printStackTrace();
-
-			if (sessao.getTransaction() != null) {
-
-				sessao.getTransaction().rollback();
-
-			}
-
-		} finally {
-
-			if (sessao != null) {
-
-				sessao.close();
-
-			}
-
-		}
-
-		return tutores;
-
-	}
-
 	// Método de recuperar todos tutor a partir do ID
 
 	public Tutor recuperarTutor(Usuario usuario) {
@@ -267,9 +217,9 @@ public class TutorDAOImpl implements TutorDAO {
 
 			CriteriaQuery<Pet> criteria = construtor.createQuery(Pet.class);
 
-			Root<Tutor> raizTutor = criteria.from(Tutor.class);
+			Root<Pet> raizTutor = criteria.from(Pet.class);
 
-			Join<Tutor, Pet> juncaoPets = raizTutor.join(Tutor_.PETS_FAVORITADOS);
+			Join<Pet, Tutor> juncaoPets = raizTutor.join(Tutor_.PETS_FAVORITADOS);
 
 			ParameterExpression<Long> idTutor = construtor.parameter(Long.class);
 
