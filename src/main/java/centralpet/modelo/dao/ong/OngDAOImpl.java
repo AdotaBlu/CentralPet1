@@ -308,4 +308,55 @@ public class OngDAOImpl implements OngDAO {
 		return pets;
 
 	}
+
+	// Método de recuperar todas as Ongs
+
+	public List<Ong> recuperarTodasOngs() {
+
+		org.hibernate.Session sessao = null;
+
+		List<Ong> ongs = null;
+
+		try {
+
+			sessao = fabrica.getConexao().openSession();
+
+			sessao.beginTransaction();
+
+			CriteriaBuilder construtor = sessao.getCriteriaBuilder();
+
+			CriteriaQuery<Ong> criteria = construtor.createQuery(Ong.class);
+
+			Root<Ong> raizOng = criteria.from(Ong.class);
+
+			criteria.select(raizOng);
+
+			ongs = sessao.createQuery(criteria).getResultList();
+
+			sessao.getTransaction().commit();
+
+		} catch (Exception sqlException) {
+
+			sqlException.printStackTrace();
+
+			if (sessao.getTransaction() != null) {
+
+				sessao.getTransaction().rollback();
+
+			}
+
+		} finally {
+
+			if (sessao != null) {
+
+				sessao.close();
+
+			}
+
+		}
+
+		return ongs;
+
+	}
+
 }

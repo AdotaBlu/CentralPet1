@@ -15,22 +15,14 @@ public interface OngDAO {
 
 	void atualizarOng(Ong ong);
 
-	// Precisa mesmo recuperar todas as ONGS? Em que tela?
-//	List<Ong> recuperarTodasOngs();
+	List<Ong> recuperarTodasOngs();
 
 	Ong recuperarOng(Usuario usuario);
 
-	/*
-	 * Mudar para List<Usuario> recuperarOngNome(Ong nome) (igual na implementação
-	 * do DAO)? 
-	 * Mesma coisa com a lista de baixo
-	 */
-	List<Ong> recuperarOngNome(Usuario nome);
+	List<Usuario> recuperarOngNome(Ong nome);
 
-	List<Ong> recuperarOngBairro(Endereco bairro);
+	List<Endereco> recuperarOngBairro(Ong bairro);
 
-	// Não teria uma lista de pets também?
-	
-	List<Ong> recuperarOngPet(Pet pets);
+	List<Pet> recuperarOngPet(Ong pets);
 
 }

@@ -1,4 +1,3 @@
-centralpet\modelo\dao\usuario\UsuarioDAO.class
 centralpet\Principal.class
 centralpet\modelo\enumeracao\pet\especie\EspeciePet.class
 centralpet\modelo\entidade\tutor\Tutor.class
@@ -9,14 +8,12 @@ centralpet\modelo\factory\conexao\ConexaoFactory.class
 centralpet\modelo\entidade\ong\Ong.class
 centralpet\modelo\entidade\termo\Termo.class
 centralpet\modelo\enumeracao\pet\porte\PortePet.class
-centralpet\modelo\dao\endereco\EnderecoDAO.class
-centralpet\modelo\dao\termo\TermoDAO.class
+centralpet\modelo\entidade\adocao\Adocao.class
+centralpet\modelo\enumeracao\adocao\StatusAdocao.class
 centralpet\modelo\entidade\endereco\Endereco.class
 centralpet\modelo\entidade\usuario\Usuario.class
 centralpet\modelo\enumeracao\genero\GeneroTutor.class
 centralpet\modelo\dao\adocao\AdocaoDAO.class
-centralpet\modelo\dao\ong\OngDAO.class
-centralpet\modelo\entidade\adocao\Adocao.class
-centralpet\modelo\enumeracao\adocao\StatusAdocao.class
 centralpet\modelo\dao\contato\ContatoDAO.class
+centralpet\modelo\dao\ong\OngDAO.class
 centralpet\modelo\enumeracao\pet\sexo\SexoPet.class
