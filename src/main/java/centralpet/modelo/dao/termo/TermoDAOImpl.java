@@ -10,9 +10,13 @@ import javax.persistence.criteria.Root;
 
 import org.hibernate.Session;
 
+import centralpet.modelo.entidade.endereco.Endereco;
+import centralpet.modelo.entidade.endereco.Endereco_;
 import centralpet.modelo.entidade.ong.Ong;
+import centralpet.modelo.entidade.ong.Ong_;
 import centralpet.modelo.entidade.termo.Termo;
 import centralpet.modelo.entidade.termo.Termo_;
+import centralpet.modelo.entidade.tutor.Tutor;
 import centralpet.modelo.entidade.usuario.Usuario;
 import centralpet.modelo.entidade.usuario.Usuario_;
 import centralpet.modelo.factory.conexao.ConexaoFactory;
@@ -184,6 +188,58 @@ public class TermoDAOImpl implements TermoDAO {
 		}
 
 		return termo;
+
+	}
+
+	// List<Termo> recuperarTermosOng(Termo ong);
+	public List<Termo> recuperarTermosOng(Ong id) {
+
+		Session sessao = null;
+
+		List<Termo> termos = null;
+		try {
+
+			sessao = fabrica.getConexao().openSession();
+
+			sessao.beginTransaction();
+
+			CriteriaBuilder construtor = sessao.getCriteriaBuilder();
+
+			CriteriaQuery<Termo> criteria = construtor.createQuery(Termo.class);
+
+			Root<Termo> raizTermo = criteria.from(Termo.class);
+
+			Join<Termo, Ong> juncaoOng = raizTermo.join(Termo_.ID);
+
+			ParameterExpression<Long> idTermo = construtor.parameter(Long.class);
+
+			criteria.where(construtor.equal(juncaoOng.get(Termo_.ID), raizTermo));
+
+			termos = sessao.createQuery(criteria).setParameter(idTermo, id.getId()).getResultList();
+
+			sessao.getTransaction().commit();
+
+		} catch (Exception sqlException) {
+
+			sqlException.printStackTrace();
+
+			if (sessao.getTransaction() != null) {
+
+				sessao.getTransaction().rollback();
+
+			}
+
+		} finally {
+
+			if (sessao != null) {
+
+				sessao.close();
+
+			}
+
+		}
+
+		return termos;
 
 	}
 
