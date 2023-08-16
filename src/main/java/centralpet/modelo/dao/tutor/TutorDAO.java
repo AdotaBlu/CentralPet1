@@ -14,7 +14,7 @@ public interface TutorDAO {
 
 	void atualizarTutor(Tutor tutor);
 
-	Tutor recuperarTutor(Tutor id);
+	Tutor recuperarTutor(Usuario usuario);
 
 	List<Pet> recuperarPetsFavoritados(Tutor pets);
 
