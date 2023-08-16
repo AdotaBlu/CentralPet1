@@ -13,7 +13,7 @@ public interface TutorDAO {
 
 	void atualizarTutor(Tutor tutor);
 
-	List<Tutor> recuperarTutor(Tutor id);
+	Tutor recuperarTutor(Tutor id);
 
 	List<Pet> recuperarPetsFavoritados(Tutor pets);
 
