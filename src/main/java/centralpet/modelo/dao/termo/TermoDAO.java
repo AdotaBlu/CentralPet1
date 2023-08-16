@@ -2,6 +2,7 @@ package centralpet.modelo.dao.termo;
 
 import java.util.List;
 
+import centralpet.modelo.entidade.ong.Ong;
 import centralpet.modelo.entidade.termo.Termo;
 
 public interface TermoDAO {
@@ -12,8 +13,8 @@ public interface TermoDAO {
 
 	void atualizarTermo(Termo termo);
 
-	List<Termo> recuperarTermo(Termo id);
+	Termo recuperarTermo();
 
-	List<Termo> recuperarTermosOng(Termo ong);
+	List<Termo> recuperarTermosOng(Ong id);
 
 }
