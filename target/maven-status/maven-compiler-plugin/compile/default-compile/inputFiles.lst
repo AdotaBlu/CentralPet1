@@ -3,6 +3,7 @@ C:\Users\Erik\eclipse-workspace\CentralPet\src\main\java\centralpet\modelo\dao\p
 C:\Users\Erik\eclipse-workspace\CentralPet\src\main\java\centralpet\modelo\entidade\ong\Ong.java
 C:\Users\Erik\eclipse-workspace\CentralPet\src\main\java\centralpet\modelo\entidade\tutor\Tutor.java
 C:\Users\Erik\eclipse-workspace\CentralPet\src\main\java\centralpet\modelo\enumeracao\genero\GeneroTutor.java
+C:\Users\Erik\eclipse-workspace\CentralPet\src\main\java\centralpet\modelo\dao\usuario\UsuarioDAOImpl.java
 C:\Users\Erik\eclipse-workspace\CentralPet\src\main\java\centralpet\modelo\entidade\usuario\Usuario.java
 C:\Users\Erik\eclipse-workspace\CentralPet\src\main\java\centralpet\modelo\enumeracao\pet\porte\PortePet.java
 C:\Users\Erik\eclipse-workspace\CentralPet\src\main\java\centralpet\modelo\entidade\endereco\Endereco.java
@@ -12,8 +13,11 @@ C:\Users\Erik\eclipse-workspace\CentralPet\src\main\java\centralpet\modelo\entid
 C:\Users\Erik\eclipse-workspace\CentralPet\src\main\java\centralpet\modelo\dao\termo\TermoDAO.java
 C:\Users\Erik\eclipse-workspace\CentralPet\src\main\java\centralpet\modelo\dao\contato\ContatoDAO.java
 C:\Users\Erik\eclipse-workspace\CentralPet\src\main\java\centralpet\modelo\entidade\pet\Pet.java
+C:\Users\Erik\eclipse-workspace\CentralPet\src\main\java\centralpet\modelo\dao\ong\OngDAOImpl.java
 C:\Users\Erik\eclipse-workspace\CentralPet\src\main\java\centralpet\modelo\enumeracao\pet\especie\EspeciePet.java
 C:\Users\Erik\eclipse-workspace\CentralPet\src\main\java\centralpet\modelo\factory\conexao\ConexaoFactory.java
+C:\Users\Erik\eclipse-workspace\CentralPet\src\main\java\centralpet\modelo\dao\termo\TermoDAOImpl.java
+C:\Users\Erik\eclipse-workspace\CentralPet\src\main\java\centralpet\modelo\dao\tutor\TutorDAOImpl.java
 C:\Users\Erik\eclipse-workspace\CentralPet\src\main\java\centralpet\modelo\dao\endereco\EnderecoDAOImpl.java
 C:\Users\Erik\eclipse-workspace\CentralPet\src\main\java\centralpet\modelo\enumeracao\pet\sexo\SexoPet.java
 C:\Users\Erik\eclipse-workspace\CentralPet\src\main\java\centralpet\modelo\dao\usuario\UsuarioDAO.java
@@ -21,6 +25,7 @@ C:\Users\Erik\eclipse-workspace\CentralPet\src\main\java\centralpet\modelo\dao\c
 C:\Users\Erik\eclipse-workspace\CentralPet\src\main\java\centralpet\modelo\dao\adocao\AdocaoDAO.java
 C:\Users\Erik\eclipse-workspace\CentralPet\src\main\java\centralpet\modelo\enumeracao\pet\status\StatusPet.java
 C:\Users\Erik\eclipse-workspace\CentralPet\src\main\java\centralpet\modelo\dao\tutor\TutorDAO.java
+C:\Users\Erik\eclipse-workspace\CentralPet\src\main\java\centralpet\modelo\dao\pet\PetDAOImpl.java
 C:\Users\Erik\eclipse-workspace\CentralPet\src\main\java\centralpet\modelo\dao\ong\OngDAO.java
 C:\Users\Erik\eclipse-workspace\CentralPet\src\main\java\centralpet\modelo\entidade\adocao\Adocao.java
 C:\Users\Erik\eclipse-workspace\CentralPet\src\main\java\centralpet\modelo\dao\endereco\EnderecoDAO.java
