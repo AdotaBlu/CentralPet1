@@ -2,7 +2,12 @@ package centralpet.modelo.dao.pet;
 
 import java.util.List;
 
+import centralpet.modelo.entidade.ong.Ong;
 import centralpet.modelo.entidade.pet.Pet;
+import centralpet.modelo.enumeracao.pet.especie.EspeciePet;
+import centralpet.modelo.enumeracao.pet.porte.PortePet;
+import centralpet.modelo.enumeracao.pet.sexo.SexoPet;
+import centralpet.modelo.enumeracao.pet.status.StatusPet;
 
 public interface PetDAO {
 
@@ -14,15 +19,13 @@ public interface PetDAO {
 	
 	List<Pet> recuperarTodosPets();
 	
-	List<Pet> recuperarPet(Pet id);
+	List<Pet> recuperarPetsOng(Ong ong);
 	
-	List<Pet> recuperarPetsOng(Pet ong);
+	List<Pet> recuperarPetsPorte(PortePet porte);
 	
-	List<Pet> recuperarPetsPorte(Pet porte);
+	List<Pet> recuperarPetsSexo(SexoPet sexo);
 	
-	List<Pet> recuperarPetsSexo(Pet sexo);
+	List<Pet> recuperarPetsEspecie(EspeciePet especie);
 	
-	List<Pet> recuperarPetsEspecie(Pet especie);
-	
-	List<Pet> recuperarPetsStatus(Pet status);
+	List<Pet> recuperarPetsStatus(StatusPet status);
 }
