@@ -21,11 +21,11 @@ public interface PetDAO {
 	
 	List<Pet> recuperarPetsOng(Ong ong);
 	
-	List<Pet> recuperarPetsPorte(PortePet porte);
+	List<Pet> recuperarPetsPorte(Pet pet);
 	
-	List<Pet> recuperarPetsSexo(SexoPet sexo);
+	List<Pet> recuperarPetsSexo(Pet pet);
 	
-	List<Pet> recuperarPetsEspecie(EspeciePet especie);
+	List<Pet> recuperarPetsEspecie(Pet pet);
 	
-	List<Pet> recuperarPetsStatus(StatusPet status);
+	List<Pet> recuperarPetsStatus(Pet pet);
 }
