@@ -3,7 +3,8 @@ package centralpet.modelo.dao.adocao;
 import java.util.List;
 
 import centralpet.modelo.entidade.adocao.Adocao;
-import centralpet.modelo.entidade.usuario.Usuario;
+import centralpet.modelo.entidade.ong.Ong;
+import centralpet.modelo.entidade.tutor.Tutor;
 
 public interface AdocaoDAO {
 
@@ -15,8 +16,7 @@ public interface AdocaoDAO {
 	
 	List<Adocao> recuperarTodasAdocoes();
 	
-	List<Adocao> recuperarAdocao(Adocao id);
+	List<Adocao> recuperarAdocoesTutor(Tutor tutor);
 	
-	List<Adocao> recuperarAdocoesOng(Usuario usuario);
-	
+	List<Adocao> recuperarAdocoesOng(Ong ong);
 }
