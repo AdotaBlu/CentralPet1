@@ -5,6 +5,8 @@ import java.time.LocalDate;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -47,6 +49,7 @@ public class Adocao implements Serializable {
 	@JoinColumn(name = "id_termo")
 	private Termo termo;
 	
+	@Enumerated(EnumType.ORDINAL)
 	@Column(name = "status_adocao", nullable = false, unique = false)
 	private StatusAdocao statusAdocao;
 	

@@ -4,6 +4,8 @@ import java.io.Serializable;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -45,15 +47,19 @@ public class Pet implements Serializable {
 	@JoinColumn(name = "id_ong", nullable = false)
 	private Ong ong;
 	
+	@Enumerated(EnumType.ORDINAL)
 	@Column(name = "status_pet", nullable = false, unique = false)
 	private StatusPet statusPet;
 	
+	@Enumerated(EnumType.ORDINAL)
 	@Column(name = "porte_pet", nullable = false, unique = false)
 	private PortePet portePet;
 	
+	@Enumerated(EnumType.ORDINAL)
 	@Column(name = "especie_pet", nullable = false, unique = false)
 	private EspeciePet especiePet;
 	
+	@Enumerated(EnumType.ORDINAL)
 	@Column(name = "sexo_pet", nullable = false, unique = false)
 	private SexoPet sexoPet;
 	
