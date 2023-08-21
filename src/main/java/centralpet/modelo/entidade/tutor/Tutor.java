@@ -8,6 +8,8 @@ import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
@@ -33,6 +35,7 @@ public class Tutor extends Usuario implements Serializable {
 	@Column(name = "data_nascimento_tutor", nullable = false, unique = false)
 	private LocalDate dataNascimento;
 	
+	@Enumerated(EnumType.ORDINAL)
 	@Column(name = "genero_tutor", nullable = false, unique = false)
 	private GeneroTutor generoTutor;
 	
