@@ -10,15 +10,9 @@ import javax.persistence.criteria.Root;
 
 import org.hibernate.Session;
 
-import centralpet.modelo.entidade.endereco.Endereco;
-import centralpet.modelo.entidade.endereco.Endereco_;
 import centralpet.modelo.entidade.ong.Ong;
-import centralpet.modelo.entidade.ong.Ong_;
 import centralpet.modelo.entidade.termo.Termo;
 import centralpet.modelo.entidade.termo.Termo_;
-import centralpet.modelo.entidade.tutor.Tutor;
-import centralpet.modelo.entidade.usuario.Usuario;
-import centralpet.modelo.entidade.usuario.Usuario_;
 import centralpet.modelo.factory.conexao.ConexaoFactory;
 
 public class TermoDAOImpl implements TermoDAO {

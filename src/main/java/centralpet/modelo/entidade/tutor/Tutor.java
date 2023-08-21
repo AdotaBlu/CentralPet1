@@ -9,9 +9,6 @@ import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
@@ -29,11 +26,6 @@ import centralpet.modelo.enumeracao.genero.GeneroTutor;
 public class Tutor extends Usuario implements Serializable {
 
 	private static final long serialVersionUID = 1L;
-	
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "id_tutor")
-	private Long id;
 	
 	@Column(name = "cpf_tutor", length = 11, nullable = false, unique = true)
 	private String cpf;
@@ -66,14 +58,6 @@ public class Tutor extends Usuario implements Serializable {
 		setCpf(cpf);
 		setDataNascimento(datanascimento);
 		setGeneroTutor(generoTutor);
-	}
-
-	public Long getId() {
-		return id;
-	}
-
-	public void setId(Long id) {
-		this.id = id;
 	}
 
 	public String getCpf() {
