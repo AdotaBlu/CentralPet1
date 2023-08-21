@@ -42,7 +42,7 @@ public class Pet implements Serializable {
 	private byte idade;
 	
 	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "id_ong")
+	@JoinColumn(name = "id_ong", nullable = false)
 	private Ong ong;
 	
 	@Column(name = "status_pet", nullable = false, unique = false)
