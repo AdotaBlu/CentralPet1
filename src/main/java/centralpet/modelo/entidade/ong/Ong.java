@@ -8,9 +8,6 @@ import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
@@ -26,11 +23,6 @@ public class Ong extends Usuario implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "id_ong")
-	private Long id;
-	
 	@Column(name = "cnpj_ong", length = 14, nullable = false, unique = true)
 	private String cnpj;
 	
@@ -64,14 +56,6 @@ public class Ong extends Usuario implements Serializable {
 		this.cnpj = cnpj;
 	}
 
-	public Long getId() {
-		return id;
-	}
-
-	public void setId(Long id) {
-	 this.id = id;
-	}
-	
 	public List<Pet> getPets () {
 		return pets;
 	}
