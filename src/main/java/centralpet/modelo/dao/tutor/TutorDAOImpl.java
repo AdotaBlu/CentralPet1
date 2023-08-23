@@ -8,11 +8,11 @@ import javax.persistence.criteria.Join;
 import javax.persistence.criteria.ParameterExpression;
 import javax.persistence.criteria.Root;
 
+import org.hibernate.Session;
+
 import centralpet.modelo.entidade.pet.Pet;
 import centralpet.modelo.entidade.tutor.Tutor;
 import centralpet.modelo.entidade.tutor.Tutor_;
-import centralpet.modelo.entidade.usuario.Usuario;
-import centralpet.modelo.entidade.usuario.Usuario_;
 import centralpet.modelo.factory.conexao.ConexaoFactory;
 
 //Classe TutorDAOImpl implementa a classe TutorDAO
@@ -147,32 +147,24 @@ public class TutorDAOImpl implements TutorDAO {
 
 	// Método de recuperar todos tutor a partir do ID
 
-	public Tutor recuperarTutor(Usuario usuario) {
+	public List<Tutor> recuperarTodosTutores() {
 
-		org.hibernate.Session sessao = null;
-
-		Tutor tutor = null;
-
+		Session sessao = null;
+		List<Tutor> tutores = null;
+		
 		try {
-
 			sessao = fabrica.getConexao().openSession();
-
 			sessao.beginTransaction();
-
+			
 			CriteriaBuilder construtor = sessao.getCriteriaBuilder();
-
+			
 			CriteriaQuery<Tutor> criteria = construtor.createQuery(Tutor.class);
-
 			Root<Tutor> raizTutor = criteria.from(Tutor.class);
-			Join<Tutor, Usuario> juncaoUsuario = raizTutor.join(Usuario_.ID);
-
-			// Só para comparar com o equals
-			ParameterExpression<Long> idUsuario = construtor.parameter(Long.class);
-
-			criteria.where(construtor.equal(juncaoUsuario.get(Usuario_.ID), idUsuario));
-
-			tutor = sessao.createQuery(criteria).setParameter(idUsuario, usuario.getId()).getSingleResult();
-
+			
+			criteria.select(raizTutor);
+			
+			tutores = sessao.createQuery(criteria).getResultList();
+			
 			sessao.getTransaction().commit();
 
 		} catch (Exception sqlException) {
@@ -195,7 +187,7 @@ public class TutorDAOImpl implements TutorDAO {
 
 		}
 
-		return tutor;
+		return tutores;
 
 	}
 
@@ -214,9 +206,9 @@ public class TutorDAOImpl implements TutorDAO {
 
 			CriteriaQuery<Pet> criteria = construtor.createQuery(Pet.class);
 
-			Root<Pet> raizTutor = criteria.from(Pet.class);
+			Root<Tutor> raizTutor = criteria.from(Tutor.class);
 
-			Join<Pet, Tutor> juncaoPets = raizTutor.join(Tutor_.PETS_FAVORITADOS);
+			Join<Tutor, Pet> juncaoPets = raizTutor.join(Tutor_.PETS_FAVORITADOS);
 
 			ParameterExpression<Long> idTutor = construtor.parameter(Long.class);
 
