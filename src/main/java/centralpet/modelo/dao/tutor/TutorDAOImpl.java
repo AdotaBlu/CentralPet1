@@ -12,9 +12,11 @@ import org.hibernate.Session;
 import org.hibernate.sql.Select;
 
 import centralpet.modelo.entidade.pet.Pet;
+import centralpet.modelo.entidade.pet.Pet_;
 import centralpet.modelo.entidade.tutor.Tutor;
 import centralpet.modelo.entidade.tutor.Tutor_;
 import centralpet.modelo.factory.conexao.ConexaoFactory;
+
 
 //Classe TutorDAOImpl implementa a classe TutorDAO
 public class TutorDAOImpl implements TutorDAO {
@@ -192,32 +194,26 @@ public class TutorDAOImpl implements TutorDAO {
 
 	}
 
-	public List<Long> recuperarPetsFavoritados(Tutor tutor) {
-		org.hibernate.Session sessao = null;
-
-		List<Long> idPetsFavs = null;
+	public List<Pet> recuperarPetsFavoritadosTutor(Tutor tutor) {
+		Session sessao = null;
+		List<Pet> petFavs = null;
 
 		try {
 
 			sessao = fabrica.getConexao().openSession();
-
 			sessao.beginTransaction();
 
 			CriteriaBuilder construtor = sessao.getCriteriaBuilder();
 
-			CriteriaQuery<Long> criteria = construtor.createQuery(Long.class);
+			CriteriaQuery<Pet> criteria = construtor.createQuery(Pet.class);
+			Root<Pet> raizEndereco = criteria.from(Pet.class);
 
-			Root<Pet> raizTutor = criteria.from(Pet.class);
+			Join<Pet, Tutor> juncaoTutor = raizEndereco.join(Pet_.tutoresQueFavoritaram);
 
-			Join<Pet, Tutor> juncaoTutor = raizTutor.join(Tutor_.PETS_FAVORITADOS);
-			
 			ParameterExpression<Long> idTutor = construtor.parameter(Long.class);
-			
-			criteria.select(raizTutor.get("id_pet"));
-			
 			criteria.where(construtor.equal(juncaoTutor.get(Tutor_.ID), idTutor));
-			
-			idPetsFavs = sessao.createQuery(criteria).setParameter(idTutor, tutor.getId()).getResultList();
+
+			petFavs = sessao.createQuery(criteria).setParameter(idTutor, tutor.getId()).getResultList();
 
 			sessao.getTransaction().commit();
 
@@ -241,7 +237,7 @@ public class TutorDAOImpl implements TutorDAO {
 
 		}
 
-		return idPetsFavs;
+		return petFavs;
 
 	}
 

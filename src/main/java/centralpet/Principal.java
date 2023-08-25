@@ -178,10 +178,10 @@ public class Principal {
 		adocaoDAO.inserirAdocao(adocao);
 
 		tutor.favoritarPet(pet);
-		List<Long> petsfav = null;
-		petsfav = tutorDAO.recuperarPetsFavoritados(tutor);
+		List<Pet> petsfav = null;
+		petsfav = tutorDAO.recuperarPetsFavoritadosTutor(tutor);
 		
-		for (Long petF : petsfav) {
+		for (Pet petF : petsfav) {
 			System.out.println(petF);
 		}
 
