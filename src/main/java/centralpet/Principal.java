@@ -55,7 +55,7 @@ public class Principal {
 		endereco.setBairro(bairro);
 		endereco.setCep(cep);
 
-		enderecoDAO.inserirEndereco(endereco);
+		
 
 		Endereco endereco2 = new Endereco();
 
@@ -69,7 +69,7 @@ public class Principal {
 		endereco2.setBairro(bairro2);
 		endereco2.setCep(cep2);
 
-		enderecoDAO.inserirEndereco(endereco2);
+		
 
 		Tutor tutor = new Tutor();
 
@@ -87,7 +87,8 @@ public class Principal {
 		tutor.setDataNascimento(datanascimento);
 		tutor.setGeneroTutor(generoTutor);
 
-		tutorDAO.inserirTutor(tutor);
+		
+		
 
 		Tutor tutor2 = new Tutor();
 
@@ -116,7 +117,7 @@ public class Principal {
 		contato.setTelefone(telefone);
 		contato.setUsuario(tutor);
 
-		contatoDAO.inserirContato(contato);
+		
 
 		Ong ong = new Ong();
 
@@ -129,7 +130,7 @@ public class Principal {
 		ong.setCnpj(cnpj);
 		ong.setDataCadastro(dataCadastro3);
 
-		ongDAO.inserirOng(ong);
+		
 
 		Pet pet = new Pet();
 
@@ -152,6 +153,7 @@ public class Principal {
 		pet.setEspeciePet(especiePet);
 		pet.setSexoPet(sexoPet);
 
+		
 		petDAO.inserirPet(pet);
 
 		Termo termo = new Termo();
@@ -161,7 +163,7 @@ public class Principal {
 		termo.setOngResponsavel(ong);
 		termo.setTermo(termoOng);
 
-		termoDAO.inserirTermo(termo);
+		
 
 		Adocao adocao = new Adocao();
 
@@ -175,14 +177,25 @@ public class Principal {
 		adocao.setStatusAdocao(statusAdocao);
 		adocao.setDataAdocao(dataAdocao);
 
+		
+		tutor.favoritarPet(pet);
+		pet.adicionarTutoresQueFavoritaram(tutor);
+		enderecoDAO.inserirEndereco(endereco2);
+		enderecoDAO.inserirEndereco(endereco2);
+		tutorDAO.inserirTutor(tutor);
+		tutorDAO.inserirTutor(tutor2);
+		contatoDAO.inserirContato(contato);
+		ongDAO.inserirOng(ong);
+		termoDAO.inserirTermo(termo);
 		adocaoDAO.inserirAdocao(adocao);
 
-		tutor.favoritarPet(pet);
-		List<Pet> petsfav = null;
+		
+		List<Tutor> petsfav = null;
+		
 		petsfav = tutorDAO.recuperarPetsFavoritadosTutor(tutor);
 		
-		for (Pet petF : petsfav) {
-			System.out.println(petF);
+		for ( Tutor petF : petsfav) {
+			System.out.println(petF.getNome());
 		}
 
 	}

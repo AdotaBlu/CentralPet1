@@ -29,6 +29,7 @@ centralpet\modelo\entidade\termo\Termo_.class
 centralpet\modelo\dao\tutor\TutorDAOImpl.class
 centralpet\modelo\dao\ong\OngDAOImpl.class
 centralpet\modelo\dao\termo\TermoDAOImpl.class
+centralpet\modelo\dao\adocao\AdocaoDAOImpl.class
 centralpet\modelo\dao\endereco\EnderecoDAOImpl.class
 centralpet\modelo\dao\pet\PetDAOImpl.class
 centralpet\modelo\entidade\adocao\Adocao.class

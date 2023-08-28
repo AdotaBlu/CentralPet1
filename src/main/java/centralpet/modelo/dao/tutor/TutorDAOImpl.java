@@ -7,12 +7,9 @@ import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Join;
 import javax.persistence.criteria.ParameterExpression;
 import javax.persistence.criteria.Root;
-
 import org.hibernate.Session;
-import org.hibernate.sql.Select;
 
 import centralpet.modelo.entidade.pet.Pet;
-import centralpet.modelo.entidade.pet.Pet_;
 import centralpet.modelo.entidade.tutor.Tutor;
 import centralpet.modelo.entidade.tutor.Tutor_;
 import centralpet.modelo.factory.conexao.ConexaoFactory;
@@ -194,9 +191,9 @@ public class TutorDAOImpl implements TutorDAO {
 
 	}
 
-	public List<Pet> recuperarPetsFavoritadosTutor(Tutor tutor) {
+	public List<Tutor> recuperarPetsFavoritadosTutor(Tutor tutor) {
 		Session sessao = null;
-		List<Pet> petFavs = null;
+		List<Tutor> petFavs = null;
 
 		try {
 
@@ -205,10 +202,10 @@ public class TutorDAOImpl implements TutorDAO {
 
 			CriteriaBuilder construtor = sessao.getCriteriaBuilder();
 
-			CriteriaQuery<Pet> criteria = construtor.createQuery(Pet.class);
-			Root<Pet> raizEndereco = criteria.from(Pet.class);
+			CriteriaQuery<Tutor> criteria = construtor.createQuery(Tutor.class);
+			Root<Tutor> raizEndereco = criteria.from(Tutor.class);
 
-			Join<Pet, Tutor> juncaoTutor = raizEndereco.join(Pet_.tutoresQueFavoritaram);
+			Join<Tutor, Pet> juncaoTutor = raizEndereco.join(Tutor_.petsFavoritados);
 
 			ParameterExpression<Long> idTutor = construtor.parameter(Long.class);
 			criteria.where(construtor.equal(juncaoTutor.get(Tutor_.ID), idTutor));
