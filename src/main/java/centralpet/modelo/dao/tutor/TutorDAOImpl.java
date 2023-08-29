@@ -7,13 +7,13 @@ import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Join;
 import javax.persistence.criteria.ParameterExpression;
 import javax.persistence.criteria.Root;
+import org.hibernate.Session;
 
 import centralpet.modelo.entidade.pet.Pet;
 import centralpet.modelo.entidade.tutor.Tutor;
 import centralpet.modelo.entidade.tutor.Tutor_;
-import centralpet.modelo.entidade.usuario.Usuario;
-import centralpet.modelo.entidade.usuario.Usuario_;
 import centralpet.modelo.factory.conexao.ConexaoFactory;
+
 
 //Classe TutorDAOImpl implementa a classe TutorDAO
 public class TutorDAOImpl implements TutorDAO {
@@ -147,82 +147,70 @@ public class TutorDAOImpl implements TutorDAO {
 
 	// Método de recuperar todos tutor a partir do ID
 
-	public Tutor recuperarTutor(Usuario usuario) {
+	public List<Tutor> recuperarTodosTutores() {
 
-		org.hibernate.Session sessao = null;
+		Session sessao = null;
+		List<Tutor> tutores = null;
+		
+		try {
+			sessao = fabrica.getConexao().openSession();
+			sessao.beginTransaction();
+			
+			CriteriaBuilder construtor = sessao.getCriteriaBuilder();
+			
+			CriteriaQuery<Tutor> criteria = construtor.createQuery(Tutor.class);
+			Root<Tutor> raizTutor = criteria.from(Tutor.class);
+			
+			criteria.select(raizTutor);
+			
+			tutores = sessao.createQuery(criteria).getResultList();
+			
+			sessao.getTransaction().commit();
 
-		Tutor tutor = null;
+		} catch (Exception sqlException) {
+
+			sqlException.printStackTrace();
+
+			if (sessao.getTransaction() != null) {
+
+				sessao.getTransaction().rollback();
+
+			}
+
+		} finally {
+
+			if (sessao != null) {
+
+				sessao.close();
+
+			}
+
+		}
+
+		return tutores;
+
+	}
+
+	public List<Tutor> recuperarPetsFavoritadosTutor(Tutor tutor) {
+		Session sessao = null;
+		List<Tutor> petFavs = null;
 
 		try {
 
 			sessao = fabrica.getConexao().openSession();
-
 			sessao.beginTransaction();
 
 			CriteriaBuilder construtor = sessao.getCriteriaBuilder();
 
 			CriteriaQuery<Tutor> criteria = construtor.createQuery(Tutor.class);
+			Root<Tutor> raizEndereco = criteria.from(Tutor.class);
 
-			Root<Tutor> raizTutor = criteria.from(Tutor.class);
-			Join<Tutor, Usuario> juncaoUsuario = raizTutor.join(Usuario_.ID);
-
-			// Só para comparar com o equals
-			ParameterExpression<Long> idUsuario = construtor.parameter(Long.class);
-
-			criteria.where(construtor.equal(juncaoUsuario.get(Usuario_.ID), idUsuario));
-
-			tutor = sessao.createQuery(criteria).setParameter(idUsuario, usuario.getId()).getSingleResult();
-
-			sessao.getTransaction().commit();
-
-		} catch (Exception sqlException) {
-
-			sqlException.printStackTrace();
-
-			if (sessao.getTransaction() != null) {
-
-				sessao.getTransaction().rollback();
-
-			}
-
-		} finally {
-
-			if (sessao != null) {
-
-				sessao.close();
-
-			}
-
-		}
-
-		return tutor;
-
-	}
-
-	public List<Pet> recuperarPetsFavoritados(Tutor tutor) {
-		org.hibernate.Session sessao = null;
-
-		List<Pet> pets = null;
-
-		try {
-
-			sessao = fabrica.getConexao().openSession();
-
-			sessao.beginTransaction();
-
-			CriteriaBuilder construtor = sessao.getCriteriaBuilder();
-
-			CriteriaQuery<Pet> criteria = construtor.createQuery(Pet.class);
-
-			Root<Pet> raizTutor = criteria.from(Pet.class);
-
-			Join<Pet, Tutor> juncaoPets = raizTutor.join(Tutor_.PETS_FAVORITADOS);
+			Join<Tutor, Pet> juncaoTutor = raizEndereco.join(Tutor_.petsFavoritados);
 
 			ParameterExpression<Long> idTutor = construtor.parameter(Long.class);
+			criteria.where(construtor.equal(juncaoTutor.get(Tutor_.ID), idTutor));
 
-			criteria.where(construtor.equal(juncaoPets.get(Tutor_.ID), idTutor));
-
-			pets = sessao.createQuery(criteria).setParameter(idTutor, tutor.getId()).getResultList();
+			petFavs = sessao.createQuery(criteria).setParameter(idTutor, tutor.getId()).getResultList();
 
 			sessao.getTransaction().commit();
 
@@ -246,7 +234,7 @@ public class TutorDAOImpl implements TutorDAO {
 
 		}
 
-		return pets;
+		return petFavs;
 
 	}
 

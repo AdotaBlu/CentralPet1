@@ -2,9 +2,7 @@ package centralpet.modelo.dao.tutor;
 
 import java.util.List;
 
-import centralpet.modelo.entidade.pet.Pet;
 import centralpet.modelo.entidade.tutor.Tutor;
-import centralpet.modelo.entidade.usuario.Usuario;
 
 public interface TutorDAO {
 
@@ -14,8 +12,8 @@ public interface TutorDAO {
 
 	void atualizarTutor(Tutor tutor);
 
-	Tutor recuperarTutor(Usuario usuario);
+	List<Tutor> recuperarTodosTutores();
 
-	List<Pet> recuperarPetsFavoritados(Tutor pets);
+	List<Tutor> recuperarPetsFavoritadosTutor(Tutor tutor);
 
 }
