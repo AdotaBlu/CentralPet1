@@ -1,4 +1,4 @@
-package centralpet;
+ package centralpet;
 
 import java.time.LocalDate;
 import java.util.List;
@@ -55,7 +55,7 @@ public class Principal {
 		endereco.setBairro(bairro);
 		endereco.setCep(cep);
 
-		
+		enderecoDAO.inserirEndereco(endereco);
 
 		Endereco endereco2 = new Endereco();
 
@@ -69,7 +69,7 @@ public class Principal {
 		endereco2.setBairro(bairro2);
 		endereco2.setCep(cep2);
 
-		
+		enderecoDAO.inserirEndereco(endereco2);
 
 		Tutor tutor = new Tutor();
 
@@ -87,7 +87,7 @@ public class Principal {
 		tutor.setDataNascimento(datanascimento);
 		tutor.setGeneroTutor(generoTutor);
 
-		
+		tutorDAO.inserirTutor(tutor);
 		
 
 		Tutor tutor2 = new Tutor();
@@ -117,7 +117,7 @@ public class Principal {
 		contato.setTelefone(telefone);
 		contato.setUsuario(tutor);
 
-		
+		contatoDAO.inserirContato(contato);
 
 		Ong ong = new Ong();
 
@@ -129,8 +129,8 @@ public class Principal {
 		ong.setEndereco(endereco2);
 		ong.setCnpj(cnpj);
 		ong.setDataCadastro(dataCadastro3);
-
-		
+		ong.setId(1L);;
+		ongDAO.inserirOng(ong);
 
 		Pet pet = new Pet();
 
@@ -163,7 +163,17 @@ public class Principal {
 		termo.setOngResponsavel(ong);
 		termo.setTermo(termoOng);
 
+		termoDAO.inserirTermo(termo);
 		
+		Termo termo2 = new Termo();
+
+		String termoOng2 = "TERMO RESPONSAVEL 2";
+
+		termo2.setOngResponsavel(ong);
+		termo2.setTermo(termoOng2);
+
+		termoDAO.inserirTermo(termo2);
+
 
 		Adocao adocao = new Adocao();
 
@@ -176,27 +186,16 @@ public class Principal {
 		adocao.setTermo(termo);
 		adocao.setStatusAdocao(statusAdocao);
 		adocao.setDataAdocao(dataAdocao);
-
 		
-		tutor.favoritarPet(pet);
-		pet.adicionarTutoresQueFavoritaram(tutor);
-		enderecoDAO.inserirEndereco(endereco2);
-		enderecoDAO.inserirEndereco(endereco2);
-		tutorDAO.inserirTutor(tutor);
-		tutorDAO.inserirTutor(tutor2);
-		contatoDAO.inserirContato(contato);
-		ongDAO.inserirOng(ong);
-		termoDAO.inserirTermo(termo);
 		adocaoDAO.inserirAdocao(adocao);
 
 		
-		List<Tutor> petsfav = null;
+		List<Termo> termosDaOng = null;
 		
-		petsfav = tutorDAO.recuperarPetsFavoritadosTutor(tutor);
+		termosDaOng = termoDAO.recuperarTermosOng(ong);
 		
-		for ( Tutor petF : petsfav) {
-			System.out.println(petF.getNome());
+		for (Termo termosOng : termosDaOng) {
+			System.out.println(termosOng.getTermo());
 		}
-
-	}
+	} 
 }
