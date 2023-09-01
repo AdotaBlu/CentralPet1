@@ -13,8 +13,6 @@ public interface TermoDAO {
 
 	void atualizarTermo(Termo termo);
 
-	Termo recuperarTermo();
-
 	List<Termo> recuperarTermosOng(Ong id);
 
 }

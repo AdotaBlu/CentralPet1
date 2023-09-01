@@ -11,6 +11,7 @@ import javax.persistence.criteria.Root;
 import org.hibernate.Session;
 
 import centralpet.modelo.entidade.ong.Ong;
+import centralpet.modelo.entidade.ong.Ong_;
 import centralpet.modelo.entidade.termo.Termo;
 import centralpet.modelo.entidade.termo.Termo_;
 import centralpet.modelo.factory.conexao.ConexaoFactory;
@@ -138,53 +139,7 @@ public class TermoDAOImpl implements TermoDAO {
 	}
 
 	// List<Termo> recuperarTermo(Termo id);
-
-	public Termo recuperarTermo() {
-
-		Session sessao = null;
-
-		Termo termo = null;
-
-		try {
-
-			sessao = fabrica.getConexao().openSession();
-			sessao.beginTransaction();
-
-			CriteriaBuilder construtor = sessao.getCriteriaBuilder();
-			CriteriaQuery<Termo> criteria = construtor.createQuery(Termo.class);
-
-			Root<Termo> raizOng = criteria.from(Termo.class);
-
-			ParameterExpression<Long> idTermo = construtor.parameter(Long.class);
-
-			termo = sessao.createQuery(criteria).setParameter(idTermo, termo.getId()).getSingleResult();
-
-			sessao.getTransaction().commit();
-
-		} catch (Exception sqlException) {
-
-			sqlException.printStackTrace();
-
-			if (sessao.getTransaction() != null) {
-
-				sessao.getTransaction().rollback();
-
-			}
-
-		} finally {
-
-			if (sessao != null) {
-
-				sessao.close();
-
-			}
-
-		}
-
-		return termo;
-
-	}
-
+	
 	// List<Termo> recuperarTermosOng(Termo ong);
 	public List<Termo> recuperarTermosOng(Ong id) {
 
@@ -203,13 +158,13 @@ public class TermoDAOImpl implements TermoDAO {
 
 			Root<Termo> raizTermo = criteria.from(Termo.class);
 
-			Join<Termo, Ong> juncaoOng = raizTermo.join(Termo_.ID);
+			Join<Termo, Ong> juncaoOng = raizTermo.join(Termo_.ONG);
 
-			ParameterExpression<Long> idTermo = construtor.parameter(Long.class);
+			ParameterExpression<Long> idOng = construtor.parameter(Long.class);
 
-			criteria.where(construtor.equal(juncaoOng.get(Termo_.ID), raizTermo));
+			criteria.where(construtor.equal(juncaoOng.get(Ong_.ID), idOng));
 
-			termos = sessao.createQuery(criteria).setParameter(idTermo, id.getId()).getResultList();
+			termos = sessao.createQuery(criteria).setParameter(idOng, id.getId()).getResultList();
 
 			sessao.getTransaction().commit();
 
