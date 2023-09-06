@@ -181,7 +181,7 @@ public class Principal {
 		pet2.setVacinas(vacinas2);
 		pet2.setDescricao(descricao2);
 		pet2.setIdade((byte) 0);
-		pet2.setOng(ong);
+		pet2.setOng(ong2);
 		pet2.setStatusPet(statusPet2);
 		pet2.setPortePet(portePet2);
 		pet2.setEspeciePet(especiePet2);
@@ -230,22 +230,19 @@ public class Principal {
 
 		adocao2.setPet(pet2);
 		adocao2.setOng(ong2);
-		adocao2.setTutor(tutor);
+		adocao2.setTutor(tutor2);
 		adocao2.setTermo(termo2);
 		adocao2.setStatusAdocao(statusAdocao2);
 		adocao2.setDataAdocao(dataAdocao2);
 		
-		adocaoDAO.inserirAdocao(adocao);
+		adocaoDAO.inserirAdocao(adocao2);
 		
 		List<Adocao> teste = null;
 		
-		teste = adocaoDAO.recuperarAdocoesOng(ong2);
-		
+		teste = adocaoDAO.recuperarAdocoesTutor(tutor);
+
 		for(Adocao teste1:teste) {
 			System.out.println(teste1.getDataAdocao());
 		}
-		
-		
-		
 	} 
 }
