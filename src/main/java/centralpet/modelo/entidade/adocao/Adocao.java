@@ -56,6 +56,8 @@ public class Adocao implements Serializable {
 	@Column(name = "data_adocao", nullable = false, unique = false)
 	private LocalDate dataAdocao;
 	
+	
+	
 	public Adocao () {}
 	
 	public Adocao (Pet pet, Ong ong, Tutor tutor, Termo termo, StatusAdocao statusAdocao, LocalDate dataAdocao) {

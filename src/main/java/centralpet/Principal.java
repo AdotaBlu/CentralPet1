@@ -131,6 +131,18 @@ public class Principal {
 		ong.setDataCadastro(dataCadastro3);
 		ong.setId(1L);;
 		ongDAO.inserirOng(ong);
+		
+		Ong ong2 = new Ong();
+
+		String nomeOng2 = "Ong Jungkook";
+		LocalDate dataCadastro4 = LocalDate.now();
+		String cnpj4 = "12355678911234";
+
+		ong2.setNome(nomeOng2);
+		ong2.setEndereco(endereco2);
+		ong2.setCnpj(cnpj4);
+		ong2.setDataCadastro(dataCadastro4);
+		ongDAO.inserirOng(ong2);
 
 		Pet pet = new Pet();
 
@@ -155,6 +167,28 @@ public class Principal {
 
 		
 		petDAO.inserirPet(pet);
+		
+		Pet pet2 = new Pet();
+		String nomePet2 = "Qiero";
+		String vacinas2 = "Raiva, fungo";
+		String descricao2 = "Fofo e dorminhoco";
+		StatusPet statusPet2 = StatusPet.DISPONIVEL;
+		PortePet portePet2 = PortePet.MEDIO;
+		EspeciePet especiePet2 = EspeciePet.CACHORRO;
+		SexoPet sexoPet2 = SexoPet.MACHO;
+
+		pet2.setNome(nomePet2);
+		pet2.setVacinas(vacinas2);
+		pet2.setDescricao(descricao2);
+		pet2.setIdade((byte) 0);
+		pet2.setOng(ong2);
+		pet2.setStatusPet(statusPet2);
+		pet2.setPortePet(portePet2);
+		pet2.setEspeciePet(especiePet2);
+		pet2.setSexoPet(sexoPet2);
+
+		
+		petDAO.inserirPet(pet2);
 
 		Termo termo = new Termo();
 
@@ -188,14 +222,27 @@ public class Principal {
 		adocao.setDataAdocao(dataAdocao);
 		
 		adocaoDAO.inserirAdocao(adocao);
+		
+		Adocao adocao2 = new Adocao();
 
+		StatusAdocao statusAdocao2 = StatusAdocao.PENDENTE;
+		LocalDate dataAdocao2 = LocalDate.of(2023, 8, 21);
+
+		adocao2.setPet(pet2);
+		adocao2.setOng(ong2);
+		adocao2.setTutor(tutor2);
+		adocao2.setTermo(termo2);
+		adocao2.setStatusAdocao(statusAdocao2);
+		adocao2.setDataAdocao(dataAdocao2);
 		
-		List<Termo> termosDaOng = null;
+		adocaoDAO.inserirAdocao(adocao2);
 		
-		termosDaOng = termoDAO.recuperarTermosOng(ong);
+		List<Adocao> teste = null;
 		
-		for (Termo termosOng : termosDaOng) {
-			System.out.println(termosOng.getTermo());
+		teste = adocaoDAO.recuperarAdocoesTutor(tutor);
+
+		for(Adocao teste1:teste) {
+			System.out.println(teste1.getDataAdocao());
 		}
 	} 
 }
