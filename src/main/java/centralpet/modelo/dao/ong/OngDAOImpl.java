@@ -15,8 +15,6 @@ import centralpet.modelo.entidade.endereco.Endereco_;
 import centralpet.modelo.entidade.ong.Ong;
 import centralpet.modelo.entidade.ong.Ong_;
 import centralpet.modelo.entidade.pet.Pet;
-import centralpet.modelo.entidade.usuario.Usuario;
-import centralpet.modelo.entidade.usuario.Usuario_;
 import centralpet.modelo.factory.conexao.ConexaoFactory;
 
 public class OngDAOImpl implements OngDAO {
@@ -103,63 +101,11 @@ public class OngDAOImpl implements OngDAO {
 	}
 
 	// Checar os parâmetros de comparação (equals)
-	public List<Usuario> recuperarOngNome(Ong nome) {
-
-		org.hibernate.Session sessao = null;
-
-		List<Usuario> nomes = null;
-
-		try {
-
-			sessao = fabrica.getConexao().openSession();
-
-			sessao.beginTransaction();
-
-			CriteriaBuilder construtor = sessao.getCriteriaBuilder();
-
-			CriteriaQuery<Usuario> criteria = construtor.createQuery(Usuario.class);
-
-			Root<Ong> raizOng = criteria.from(Ong.class);
-
-			// Join<Ong, Ong> juncaoNomes = raizOng.join(Ong_.NOME);
-
-			ParameterExpression<Long> idOng = construtor.parameter(Long.class);
-
-			criteria.where(construtor.equal(idOng, nome.getId()));
-
-			nomes = sessao.createQuery(criteria).setParameter(idOng, nome.getId()).getResultList();
-
-			sessao.getTransaction().commit();
-
-		} catch (Exception sqlException) {
-
-			sqlException.printStackTrace();
-
-			if (sessao.getTransaction() != null) {
-
-				sessao.getTransaction().rollback();
-
-			}
-
-		} finally {
-
-			if (sessao != null) {
-
-				sessao.close();
-
-			}
-
-		}
-
-		return nomes;
-
-	}
-
-	public List<Ong> recuperarOngBairro(Endereco bairro) {
+	public List<Ong> recuperarOngNome(String nomeOng) {
 
 		Session sessao = null;
 
-		List<Ong> bairros = null;
+		List<Ong> ongs= null;
 
 		try {
 
@@ -171,17 +117,14 @@ public class OngDAOImpl implements OngDAO {
 
 			CriteriaQuery<Ong> criteria = construtor.createQuery(Ong.class);
 
-			Root<Ong> raizEndereco= criteria.from(Ong.class);
+			Root<Ong> raizOng = criteria.from(Ong.class);
+			
+			criteria.select(raizOng);
 
-		//	Join<Ong, Endereco> juncaoBairros = raizOng.join(Endereco_.BAIRRO);
-			Join<Endereco, Ong> juncaoBairros = raizEndereco.join(Endereco_.ID);
+			criteria.where(construtor.like(raizOng.get(Ong_.nome), "%" + nomeOng + "%"));
 
-			//ParameterExpression<Long> idOng = construtor.parameter(Long.class);
-			ParameterExpression<String> inputPesquisa = construtor.parameter(String.class);
-			criteria.where(construtor.equal(juncaoBairros.get(Endereco_.ID), inputPesquisa));
+			ongs = sessao.createQuery(criteria).getResultList();
 
-			//bairros = sessao.createQuery(criteria).setParameter(idOng, bairro.getId()).getResultList();
-			bairros = sessao.createQuery(criteria).setParameter(inputPesquisa, bairro.getBairro()).getResultList();
 			sessao.getTransaction().commit();
 
 		} catch (Exception sqlException) {
@@ -204,9 +147,112 @@ public class OngDAOImpl implements OngDAO {
 
 		}
 
-		return bairros;
+		return ongs;
 
 	}
+
+	public List<Ong> recuperarOngBairro(String localidade) {
+
+		Session sessao = null;
+
+		List<Ong> ongs = null;
+
+		try {
+
+			sessao = fabrica.getConexao().openSession();
+
+			sessao.beginTransaction();
+
+			CriteriaBuilder construtor = sessao.getCriteriaBuilder();
+
+			CriteriaQuery<Ong> criteria = construtor.createQuery(Ong.class);
+
+			Root<Ong> raizOng = criteria.from(Ong.class);
+
+			Join<Ong, Endereco> juncaoEndereco = raizOng.join(Ong_.endereco);
+
+			criteria.select(raizOng);
+
+			criteria.where(construtor.like(juncaoEndereco.get(Endereco_.bairro), "%" + localidade + "%"));
+
+			ongs = sessao.createQuery(criteria).getResultList();
+
+			sessao.getTransaction().commit();
+
+		} catch (Exception sqlException) {
+
+			sqlException.printStackTrace();
+
+			if (sessao.getTransaction() != null) {
+
+				sessao.getTransaction().rollback();
+
+			}
+
+		} finally {
+
+			if (sessao != null) {
+
+				sessao.close();
+
+			}
+
+		}
+
+		return ongs;
+
+	}
+
+//		Session sessao = null;
+//
+//		List<Ong> bairros = null;
+//
+//		try {
+//
+//			sessao = fabrica.getConexao().openSession();
+//
+//			sessao.beginTransaction();
+//
+//			CriteriaBuilder construtor = sessao.getCriteriaBuilder();
+//
+//			CriteriaQuery<Ong> criteria = construtor.createQuery(Ong.class);
+//
+//			Root<Ong> raizEndereco= criteria.from(Ong.class);
+//
+//		//	Join<Ong, Endereco> juncaoBairros = raizOng.join(Endereco_.BAIRRO);
+//			Join<Endereco, Ong> juncaoBairros = raizEndereco.join(Endereco_.ID);
+//
+//			//ParameterExpression<Long> idOng = construtor.parameter(Long.class);
+//			ParameterExpression<String> inputPesquisa = construtor.parameter(String.class);
+//			criteria.where(construtor.equal(juncaoBairros.get(Endereco_.ID), inputPesquisa));
+//
+//			//bairros = sessao.createQuery(criteria).setParameter(idOng, bairro.getId()).getResultList();
+//			bairros = sessao.createQuery(criteria).setParameter(inputPesquisa, bairro.getBairro()).getResultList();
+//			sessao.getTransaction().commit();
+//
+//		} catch (Exception sqlException) {
+//
+//			sqlException.printStackTrace();
+//
+//			if (sessao.getTransaction() != null) {
+//
+//				sessao.getTransaction().rollback();
+//
+//			}
+//
+//		} finally {
+//
+//			if (sessao != null) {
+//
+//				sessao.close();
+//
+//			}
+//
+//		}
+//
+//		return bairros;
+//
+//	}
 
 	public List<Pet> recuperarOngPet(Ong pet) {
 

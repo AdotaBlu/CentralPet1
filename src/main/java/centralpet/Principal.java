@@ -64,6 +64,21 @@ public class Principal {
 
 		 enderecoDAO.inserirEndereco(endereco2);
 
+		 String logradouro3 = "centenario";
+			short numero3 = 464;
+			String bairro3 = "Garcia";
+			String cep3 = "13345221";
+
+			Endereco endereco3 = new Endereco();
+			
+			endereco3.setLogradouro(logradouro3);
+			endereco3.setNumero(numero3);
+			endereco3.setBairro(bairro3);
+			endereco3.setCep(cep3);
+			
+		 
+			enderecoDAO.inserirEndereco(endereco3);
+			
 		Tutor tutor = new Tutor();
 
 		String nome = "Joao";
@@ -119,6 +134,20 @@ public class Principal {
 		ong2.setDataCadastro(dataCadastro3);
 
 		 ongDAO.inserirOng(ong2);
+		 
+		 Ong ong3 = new Ong();
+
+			String nomeOng3 = "Ong Eduardo";
+			LocalDate dataCadastro4 = LocalDate.now();
+			String cnpj3 = "12345698911234";
+
+			ong3.setNome(nomeOng3);
+			ong3.setEndereco(endereco3);
+			ong3.setCnpj(cnpj3);
+			ong3.setDataCadastro(dataCadastro4);
+			// ong.setId(2L);
+
+			 ongDAO.inserirOng(ong3);
 
 //		List<Ong> lista = null;
 //		lista = ongDAO.recuperarTodasOngs();
@@ -126,7 +155,17 @@ public class Principal {
 //			System.out.println(teste.getNome());
 //		}
 
-		System.out.println(ongDAO.recuperarOngBairro(endereco));
-
+		
+		List<Ong> ongsPorBairro = null;
+		ongsPorBairro = ongDAO.recuperarOngBairro("t");
+		for(Ong ongTeste : ongsPorBairro) {
+			System.out.println(ongTeste.getNome());
+		}
+		
+		List<Ong> ongsPorNome = null;
+		ongsPorNome = ongDAO.recuperarOngBairro("t");
+		for(Ong ongTeste : ongsPorNome) {
+			System.out.println(ongTeste.getNome());
+		}
 	}
 }
