@@ -246,5 +246,11 @@ public class Principal {
 		for(Ong ongTeste : ongsPorBairro) {
 			System.out.println(ongTeste.getNome());
 		}
+		
+		List<Ong> ongsPorNome = null;
+		ongsPorNome = ongDAO.recuperarOngNome("s");
+		for(Ong ongTeste : ongsPorNome) {
+			System.out.println(ongTeste.getNome());
+		}
 	} 
 }
