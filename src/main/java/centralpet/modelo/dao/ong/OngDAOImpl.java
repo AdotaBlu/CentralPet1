@@ -102,56 +102,6 @@ public class OngDAOImpl implements OngDAO {
 		}
 	}
 
-	public Ong recuperarOng(Usuario usuario) {
-
-		Session sessao = null;
-
-		Ong ong = null;
-
-		try {
-
-			sessao = fabrica.getConexao().openSession();
-			sessao.beginTransaction();
-
-			CriteriaBuilder construtor = sessao.getCriteriaBuilder();
-			CriteriaQuery<Ong> criteria = construtor.createQuery(Ong.class);
-
-			Root<Ong> raizOng = criteria.from(Ong.class);
-			Join<Ong, Usuario> juncaoUsuario = raizOng.join(Usuario_.ID);
-
-			// Só para comparar com o equals
-			ParameterExpression<Long> idUsuario = construtor.parameter(Long.class);
-
-			criteria.where(construtor.equal(juncaoUsuario.get(Usuario_.ID), idUsuario));
-
-			ong = sessao.createQuery(criteria).setParameter(idUsuario, usuario.getId()).getSingleResult();
-
-			sessao.getTransaction().commit();
-
-		} catch (Exception sqlException) {
-
-			sqlException.printStackTrace();
-
-			if (sessao.getTransaction() != null) {
-
-				sessao.getTransaction().rollback();
-
-			}
-
-		} finally {
-
-			if (sessao != null) {
-
-				sessao.close();
-
-			}
-
-		}
-
-		return ong;
-
-	}
-
 	// Checar os parâmetros de comparação (equals)
 	public List<Usuario> recuperarOngNome(Ong nome) {
 
@@ -171,11 +121,11 @@ public class OngDAOImpl implements OngDAO {
 
 			Root<Ong> raizOng = criteria.from(Ong.class);
 
-			Join<Ong, Usuario> juncaoNomes = raizOng.join(Ong_.NOME);
+			// Join<Ong, Ong> juncaoNomes = raizOng.join(Ong_.NOME);
 
 			ParameterExpression<Long> idOng = construtor.parameter(Long.class);
 
-			criteria.where(construtor.equal(juncaoNomes.get(Ong_.ID), idOng));
+			criteria.where(construtor.equal(idOng, nome.getId()));
 
 			nomes = sessao.createQuery(criteria).setParameter(idOng, nome.getId()).getResultList();
 
@@ -205,11 +155,11 @@ public class OngDAOImpl implements OngDAO {
 
 	}
 
-	public List<Endereco> recuperarOngBairro(Ong bairro) {
+	public List<Ong> recuperarOngBairro(Endereco bairro) {
 
-		org.hibernate.Session sessao = null;
+		Session sessao = null;
 
-		List<Endereco> bairros = null;
+		List<Ong> bairros = null;
 
 		try {
 
@@ -219,18 +169,19 @@ public class OngDAOImpl implements OngDAO {
 
 			CriteriaBuilder construtor = sessao.getCriteriaBuilder();
 
-			CriteriaQuery<Endereco> criteria = construtor.createQuery(Endereco.class);
+			CriteriaQuery<Ong> criteria = construtor.createQuery(Ong.class);
 
-			Root<Ong> raizOng = criteria.from(Ong.class);
+			Root<Ong> raizEndereco= criteria.from(Ong.class);
 
-			Join<Ong, Endereco> juncaoBairros = raizOng.join(Endereco_.BAIRRO);
+		//	Join<Ong, Endereco> juncaoBairros = raizOng.join(Endereco_.BAIRRO);
+			Join<Endereco, Ong> juncaoBairros = raizEndereco.join(Endereco_.ID);
 
-			ParameterExpression<Long> idOng = construtor.parameter(Long.class);
+			//ParameterExpression<Long> idOng = construtor.parameter(Long.class);
+			ParameterExpression<String> inputPesquisa = construtor.parameter(String.class);
+			criteria.where(construtor.equal(juncaoBairros.get(Endereco_.ID), inputPesquisa));
 
-			criteria.where(construtor.equal(juncaoBairros.get(Ong_.ID), idOng));
-
-			bairros = sessao.createQuery(criteria).setParameter(idOng, bairro.getId()).getResultList();
-
+			//bairros = sessao.createQuery(criteria).setParameter(idOng, bairro.getId()).getResultList();
+			bairros = sessao.createQuery(criteria).setParameter(inputPesquisa, bairro.getBairro()).getResultList();
 			sessao.getTransaction().commit();
 
 		} catch (Exception sqlException) {

@@ -17,11 +17,9 @@ public interface OngDAO {
 
 	List<Ong> recuperarTodasOngs();
 
-	Ong recuperarOng(Usuario usuario);
-
 	List<Usuario> recuperarOngNome(Ong nome);
 
-	List<Endereco> recuperarOngBairro(Ong bairro);
+	List<Ong> recuperarOngBairro(Endereco bairro);
 
 	List<Pet> recuperarOngPet(Ong pets);
 
