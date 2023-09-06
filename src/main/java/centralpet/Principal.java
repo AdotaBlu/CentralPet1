@@ -241,8 +241,10 @@ public class Principal {
 		
 		teste = adocaoDAO.recuperarAdocoesTutor(tutor);
 
-		for(Adocao teste1:teste) {
-			System.out.println(teste1.getDataAdocao());
+		List<Ong> ongsPorBairro = null;
+		ongsPorBairro = ongDAO.recuperarOngBairro("t");
+		for(Ong ongTeste : ongsPorBairro) {
+			System.out.println(ongTeste.getNome());
 		}
 	} 
 }
