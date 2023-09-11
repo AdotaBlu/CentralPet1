@@ -13,6 +13,7 @@ import org.hibernate.Session;
 import centralpet.modelo.entidade.ong.Ong;
 import centralpet.modelo.entidade.ong.Ong_;
 import centralpet.modelo.entidade.pet.Pet;
+import centralpet.modelo.entidade.pet.Pet_;
 import centralpet.modelo.enumeracao.pet.especie.EspeciePet;
 import centralpet.modelo.enumeracao.pet.porte.PortePet;
 import centralpet.modelo.enumeracao.pet.sexo.SexoPet;
@@ -194,7 +195,7 @@ public class PetDAOImpl implements PetDAO {
 		return petsOng;
 	}
 
-	public List<Pet> recuperarPetsPorte(Pet pet) {
+	public List<Pet> recuperarPetsPorte(PortePet porte) {
 
 		Session sessao = null;
 		List<Pet> petsDessePorte = null;
@@ -207,12 +208,14 @@ public class PetDAOImpl implements PetDAO {
 
 			CriteriaQuery<Pet> criteria = construtor.createQuery(Pet.class);
 
-			ParameterExpression<PortePet> portePet = construtor.parameter(PortePet.class);
-
-			criteria.where(construtor.equal(portePet, pet.getPortePet()));
-
-			petsDessePorte = sessao.createQuery(criteria).setParameter(portePet, pet.getPortePet()).getResultList();
-
+			Root<Pet> raizPet = criteria.from(Pet.class);
+			
+			criteria.select(raizPet);
+			
+			criteria.where(construtor.equal(raizPet.get(Pet_.portePet), porte));
+			
+			petsDessePorte = sessao.createQuery(criteria).getResultList();
+			
 			sessao.getTransaction().commit();
 
 		} catch (Exception sqlException) {
@@ -231,7 +234,7 @@ public class PetDAOImpl implements PetDAO {
 		return petsDessePorte;
 	}
 
-	public List<Pet> recuperarPetsSexo(Pet pet) {
+	public List<Pet> recuperarPetsSexo(SexoPet sexo) {
 		Session sessao = null;
 		List<Pet> petsDesseSexo = null;
 
@@ -243,12 +246,14 @@ public class PetDAOImpl implements PetDAO {
 
 			CriteriaQuery<Pet> criteria = construtor.createQuery(Pet.class);
 
-			ParameterExpression<SexoPet> sexoPet = construtor.parameter(SexoPet.class);
-
-			criteria.where(construtor.equal(sexoPet, pet.getSexoPet()));
-
-			petsDesseSexo = sessao.createQuery(criteria).setParameter(sexoPet, pet.getSexoPet()).getResultList();
-
+			Root<Pet> raizPet = criteria.from(Pet.class);
+			
+			criteria.select(raizPet);
+			
+			criteria.where(construtor.equal(raizPet.get(Pet_.sexoPet), sexo));
+			
+			petsDesseSexo = sessao.createQuery(criteria).getResultList();
+	
 			sessao.getTransaction().commit();
 
 		} catch (Exception sqlException) {
@@ -267,7 +272,7 @@ public class PetDAOImpl implements PetDAO {
 		return petsDesseSexo;
 	}
 
-	public List<Pet> recuperarPetsEspecie(Pet pet) {
+	public List<Pet> recuperarPetsEspecie(EspeciePet especie) {
 
 		Session sessao = null;
 		List<Pet> petsDessaEspecie = null;
@@ -280,12 +285,13 @@ public class PetDAOImpl implements PetDAO {
 
 			CriteriaQuery<Pet> criteria = construtor.createQuery(Pet.class);
 
-			ParameterExpression<EspeciePet> especiePet = construtor.parameter(EspeciePet.class);
-
-			criteria.where(construtor.equal(especiePet, pet.getEspeciePet()));
-
-			petsDessaEspecie = sessao.createQuery(criteria).setParameter(especiePet, pet.getEspeciePet())
-					.getResultList();
+			Root<Pet> raizPet = criteria.from(Pet.class);
+			
+			criteria.select(raizPet);
+			
+			criteria.where(construtor.equal(raizPet.get(Pet_.especiePet), especie));
+			
+			petsDessaEspecie = sessao.createQuery(criteria).getResultList();
 
 			sessao.getTransaction().commit();
 
@@ -305,7 +311,7 @@ public class PetDAOImpl implements PetDAO {
 		return petsDessaEspecie;
 	}
 
-	public List<Pet> recuperarPetsStatus(Pet pet) {
+	public List<Pet> recuperarPetsStatus(StatusPet status) {
 
 		Session sessao = null;
 		List<Pet> petsDesseStatus = null;
@@ -318,11 +324,13 @@ public class PetDAOImpl implements PetDAO {
 
 			CriteriaQuery<Pet> criteria = construtor.createQuery(Pet.class);
 
-			ParameterExpression<StatusPet> statusPet = construtor.parameter(StatusPet.class);
-
-			criteria.where(construtor.equal(statusPet, pet.getStatusPet()));
-
-			petsDesseStatus = sessao.createQuery(criteria).setParameter(statusPet, pet.getStatusPet()).getResultList();
+			Root<Pet> raizPet = criteria.from(Pet.class);
+			
+			criteria.select(raizPet);
+			
+			criteria.where(construtor.equal(raizPet.get(Pet_.statusPet), status));
+			
+			petsDesseStatus = sessao.createQuery(criteria).getResultList();
 
 			sessao.getTransaction().commit();
 

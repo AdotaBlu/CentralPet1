@@ -151,7 +151,7 @@ public class Principal {
 		String descricao = "Fofo, amigavel e companheiro";
 		Byte idade = 4;
 		StatusPet statusPet = StatusPet.DISPONIVEL;
-		PortePet portePet = PortePet.PEQUENO;
+		PortePet portePet = PortePet.MEDIO;
 		EspeciePet especiePet = EspeciePet.CACHORRO;
 		SexoPet sexoPet = SexoPet.FEMEA;
 
@@ -237,20 +237,12 @@ public class Principal {
 		
 		adocaoDAO.inserirAdocao(adocao2);
 		
-		List<Adocao> teste = null;
+		List<Pet> petsDoPorte = null;
 		
-		teste = adocaoDAO.recuperarAdocoesTutor(tutor);
-
-		List<Ong> ongsPorBairro = null;
-		ongsPorBairro = ongDAO.recuperarOngBairro("t");
-		for(Ong ongTeste : ongsPorBairro) {
-			System.out.println(ongTeste.getNome());
-		}
+		petsDoPorte = petDAO.recuperarPetsPorte(PortePet.GIGANTE);
 		
-		List<Ong> ongsPorNome = null;
-		ongsPorNome = ongDAO.recuperarOngNome("s");
-		for(Ong ongTeste : ongsPorNome) {
-			System.out.println(ongTeste.getNome());
+		for (Pet teste: petsDoPorte) {
+			System.out.println(teste.getNome());
 		}
 	} 
 }
