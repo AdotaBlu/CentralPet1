@@ -2,6 +2,7 @@ package centralpet.modelo.entidade.acompanhamento;
 
 import java.time.LocalDate;
 
+import centralpet.modelo.entidade.adocao.Adocao;
 import centralpet.modelo.entidade.ong.Ong;
 import centralpet.modelo.entidade.pet.Pet;
 import centralpet.modelo.entidade.tutor.Tutor;
@@ -17,6 +18,7 @@ public class Acompanhamento {
 	private Ong ong;
 	private Tutor tutor;
 	private Pet pet;
+	private Adocao adocao;
 
 	public Acompanhamento() {
 	}
@@ -31,6 +33,7 @@ public class Acompanhamento {
 		setOng(ong);
 		setTutor(tutor);
 		setPet(pet);
+		setAdocao(adocao);
 	}
 
 	// Utilizado quando recebe as informações para o banco
@@ -45,6 +48,7 @@ public class Acompanhamento {
 		setOng(ong);
 		setTutor(tutor);
 		setPet(pet);
+		setAdocao(adocao);
 	}
 
 	public Long getId() {
@@ -117,5 +121,13 @@ public class Acompanhamento {
 
 	public void setPet(Pet pet) {
 		this.pet = pet;
+	}
+
+	public Adocao getAdocao() {
+		return adocao;
+	}
+
+	public void setAdocao(Adocao adocao) {
+		this.adocao = adocao;
 	}
 }
