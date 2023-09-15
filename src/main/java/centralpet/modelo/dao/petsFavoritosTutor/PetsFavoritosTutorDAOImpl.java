@@ -2,6 +2,8 @@ package centralpet.modelo.dao.petsFavoritosTutor;
 
 import java.util.List;
 
+import org.hibernate.Session;
+
 import centralpet.modelo.entidade.favorito.PetsFavoritosTutor;
 import centralpet.modelo.entidade.tutor.Tutor;
 import centralpet.modelo.factory.conexao.ConexaoFactory;
@@ -123,8 +125,30 @@ public class PetsFavoritosTutorDAOImpl implements PetsFavoritosTutorDAO{
 	}
 
 	
+	
 	public List<PetsFavoritosTutor> petsFavoritadosTutor(Tutor tutor) {
-		return null;
+		
+		Session sessao = null;
+		
+		List<PetsFavoritosTutor> petsFavoritos = null;
+		
+		try {
+		
+			sessao = fabrica.getConexao().openSession();
+			
+		} catch (Exception sqlException) {
+			sqlException.printStackTrace();
+			if(sessao.getTransaction() != null) {
+				sessao.getTransaction().rollback();
+			}
+		} finally {
+			if(sessao != null) {
+				sessao.close();
+			}
+		}
+		
+		
+		return petsFavoritos;
 	}
 
 	
