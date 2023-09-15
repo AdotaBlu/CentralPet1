@@ -5,6 +5,7 @@ import java.time.LocalDate;
 import centralpet.modelo.entidade.ong.Ong;
 import centralpet.modelo.entidade.pet.Pet;
 import centralpet.modelo.entidade.tutor.Tutor;
+import centralpet.modelo.entidade.adocao.Adocao;
 
 public class Acompanhamento {
 
@@ -17,6 +18,7 @@ public class Acompanhamento {
 	private Ong ong;
 	private Tutor tutor;
 	private Pet pet;
+	private Adocao adocao;
 
 	public Acompanhamento() {
 	}
@@ -35,7 +37,7 @@ public class Acompanhamento {
 
 	// Utilizado quando recebe as informações para o banco
 	public Acompanhamento(Long id, byte video, byte foto, String observacao, LocalDate dataEnvioVideo,
-			LocalDate dataEnvioFoto) {
+			LocalDate dataEnvioFoto, Adocao adocao) {
 		setId(id);
 		setVideo(video);
 		setFoto(foto);
@@ -45,6 +47,7 @@ public class Acompanhamento {
 		setOng(ong);
 		setTutor(tutor);
 		setPet(pet);
+		setAdocao(adocao);
 	}
 
 	public Long getId() {
@@ -117,5 +120,12 @@ public class Acompanhamento {
 
 	public void setPet(Pet pet) {
 		this.pet = pet;
+	}
+	public Adocao getAdocao() {
+		return adocao;
+	}
+	
+	public void setAdocao(Adocao adocao) {
+		this.adocao = adocao;
 	}
 }
