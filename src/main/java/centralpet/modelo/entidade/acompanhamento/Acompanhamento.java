@@ -33,6 +33,7 @@ public class Acompanhamento {
 		setOng(ong);
 		setTutor(tutor);
 		setPet(pet);
+		setAdocao(adocao);
 	}
 
 	// Utilizado quando recebe as informações para o banco
