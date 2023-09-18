@@ -1,8 +1,6 @@
 package centralpet.modelo.entidade.pet;
 
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -13,12 +11,10 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 import centralpet.modelo.entidade.ong.Ong;
-import centralpet.modelo.entidade.tutor.Tutor;
 import centralpet.modelo.enumeracao.pet.especie.EspeciePet;
 import centralpet.modelo.enumeracao.pet.porte.PortePet;
 import centralpet.modelo.enumeracao.pet.sexo.SexoPet;
@@ -66,9 +62,6 @@ public class Pet implements Serializable {
 	@Enumerated(EnumType.ORDINAL)
 	@Column(name = "sexo_pet", nullable = false, unique = false)
 	private SexoPet sexoPet;
-	
-	@ManyToMany(mappedBy = "petsFavoritados")
-	private List<Tutor> tutoresQueFavoritaram = new ArrayList<>();
 	
 	public Pet () {}
 	
@@ -177,16 +170,4 @@ public class Pet implements Serializable {
 		this.sexoPet = sexoPet;
 	}
 
-	public List<Tutor> getTutoresQueFavoritaram() {
-		return tutoresQueFavoritaram;
-	}
-
-	public void adicionarTutoresQueFavoritaram(Tutor tutor) {
-		this.tutoresQueFavoritaram.add(tutor);
-	}
-	public void removerTutoresQueFavoritaram(Tutor tutor) {
-		this.tutoresQueFavoritaram.remove(tutor);
-	}
-	
-	
 }

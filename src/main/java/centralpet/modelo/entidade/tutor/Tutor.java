@@ -11,15 +11,11 @@ import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.FetchType;
-import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import centralpet.modelo.entidade.adocao.Adocao;
 import centralpet.modelo.entidade.endereco.Endereco;
-import centralpet.modelo.entidade.pet.Pet;
 import centralpet.modelo.entidade.usuario.Usuario;
 import centralpet.modelo.enumeracao.genero.GeneroTutor;
 
@@ -41,10 +37,6 @@ public class Tutor extends Usuario implements Serializable {
 	
 	@OneToMany(fetch = FetchType.LAZY,mappedBy = "tutor", cascade = CascadeType.ALL, orphanRemoval = true)
 	private List<Adocao> adocoes = new ArrayList<>();
-	
-	@ManyToMany(fetch = FetchType.LAZY, cascade = {CascadeType.PERSIST, CascadeType.MERGE})
-	@JoinTable(name = "pets_favoritos_tutor", joinColumns = @JoinColumn(name = "id_tutor"), inverseJoinColumns = @JoinColumn(name = "id_pet"))
-	private List<Pet> petsFavoritados = new ArrayList<>();
 	
 	public Tutor () {}
 	
@@ -97,18 +89,6 @@ public class Tutor extends Usuario implements Serializable {
 	
 	public void adocaoDesfeita (Adocao adocao) {
 		this.adocoes.remove(adocao);
-	}
-	
-	public List<Pet> getPetsFavoritados() {
-		return petsFavoritados;
-	}
-	
-	public void favoritarPet (Pet pet) {
-		this.petsFavoritados.add(pet);
-	}
-	
-	public void desFavoritarPet (Pet pet) {
-		this.petsFavoritados.remove(pet);
 	}
 	
 }

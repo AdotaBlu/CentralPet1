@@ -17,11 +17,11 @@ public class PetsFavoritosTutor {
 	private PetsFavoritosTutorId id = new PetsFavoritosTutorId();
 	
 	@ManyToOne
-	@MapsId("id_usuario")
+	@MapsId("tutorId")
 	private Tutor tutor;
 	
 	@ManyToOne
-	@MapsId("id_pet")
+	@MapsId("petId")
 	private Pet pet;
 	
 	public PetsFavoritosTutor() {}

@@ -19,7 +19,7 @@ import centralpet.modelo.enumeracao.pet.sexo.SexoPet;
 import centralpet.modelo.enumeracao.pet.status.StatusPet;
 import centralpet.modelo.factory.conexao.ConexaoFactory;
 
-public class PetDAOImpl implements PetDAO {
+public class PetDAOImpl implements PetDAO{
 
 	private ConexaoFactory fabrica;
 
