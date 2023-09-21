@@ -8,7 +8,6 @@ import javax.persistence.criteria.Join;
 import javax.persistence.criteria.Root;
 
 import org.hibernate.Session;
-import org.hibernate.sql.Select;
 
 import centralpet.modelo.entidade.favorito.PetsFavoritosTutor;
 import centralpet.modelo.entidade.favorito.PetsFavoritosTutor_;

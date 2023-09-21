@@ -1,6 +1,7 @@
  package centralpet;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 
 import centralpet.modelo.dao.adocao.AdocaoDAO;
@@ -153,7 +154,6 @@ public class Principal {
 		String nomePet = "Java";
 		String vacinas = "Raiva";
 		String descricao = "Fofo, amigavel e companheiro";
-		Byte idade = 4;
 		StatusPet statusPet = StatusPet.DISPONIVEL;
 		PortePet portePet = PortePet.PEQUENO;
 		EspeciePet especiePet = EspeciePet.CACHORRO;
@@ -243,27 +243,28 @@ public class Principal {
 		
 		PetsFavoritosTutor petsFav = new PetsFavoritosTutor();
 		
-		petsFav.setTutor(tutor);
+		petsFav.setUsuario(tutor);
 		petsFav.setPet(pet);
 		
 		petsFavoritosTutorDAO.inserirPetsFavoritados(petsFav);
 		
 		PetsFavoritosTutor petsFav2 = new PetsFavoritosTutor();
 		
-		petsFav2.setTutor(tutor);
+		petsFav2.setUsuario(tutor);
 		petsFav2.setPet(pet2);
 		
 		petsFavoritosTutorDAO.inserirPetsFavoritados(petsFav2);
 		
-		//List<Adocao> teste = null;
+		List<PetsFavoritosTutor> petsfavoritos = new ArrayList<>();
 		
-		/*
-		 * teste = adocaoDAO.recuperarAdocoesTutor(tutor);
-		 * 
-		 * List<Ong> ongsPorBairro = null; ongsPorBairro =
-		 * ongDAO.recuperarOngBairro("t"); for(Ong ongTeste : ongsPorBairro) {
-		 * System.out.println(ongTeste.getNome()); }
-		 */
+		Pet descobrirNomePet = null;
+		petsFavoritosTutorDAO.petsFavoritadosTutor(tutor);
+		
+		for(PetsFavoritosTutor favsTutor : petsfavoritos) {
+			descobrirNomePet = favsTutor.getPet();
+			
+			System.out.println(descobrirNomePet.getNome());
+		}
 		
 		
 	} 

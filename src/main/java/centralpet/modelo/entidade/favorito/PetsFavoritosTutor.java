@@ -1,5 +1,7 @@
 package centralpet.modelo.entidade.favorito;
 
+import java.io.Serializable;
+
 import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
@@ -7,18 +9,20 @@ import javax.persistence.MapsId;
 import javax.persistence.Table;
 
 import centralpet.modelo.entidade.pet.Pet;
-import centralpet.modelo.entidade.tutor.Tutor;
+import centralpet.modelo.entidade.usuario.Usuario;
 
 @Entity
 @Table(name="pets_favoritos_tutor")
-public class PetsFavoritosTutor {
+public class PetsFavoritosTutor implements Serializable{
+
+	private static final long serialVersionUID = 1L;
 
 	@EmbeddedId
 	private PetsFavoritosTutorId id = new PetsFavoritosTutorId();
 	
 	@ManyToOne
 	@MapsId("tutorId")
-	private Tutor tutor;
+	private Usuario usuario;
 	
 	@ManyToOne
 	@MapsId("petId")
@@ -26,23 +30,23 @@ public class PetsFavoritosTutor {
 	
 	public PetsFavoritosTutor() {}
 
-	public PetsFavoritosTutor(Tutor tutor, Pet pet) {
-		setTutor(tutor);
+	public PetsFavoritosTutor(Usuario usuario, Pet pet) {
+		setUsuario(usuario);
 		setPet(pet);
 	}
 	
-	public PetsFavoritosTutor(PetsFavoritosTutorId id,Tutor tutor, Pet pet) {
+	public PetsFavoritosTutor(PetsFavoritosTutorId id,Usuario usuario, Pet pet) {
 		setId(id);
-		setTutor(tutor);
+		setUsuario(usuario);
 		setPet(pet);
 	}
 	
-	public Tutor getTutor() {
-		return tutor;
+	public Usuario getUsuario() {
+		return usuario;
 	}
 
-	public void setTutor(Tutor tutor) {
-		this.tutor = tutor;
+	public void setUsuario(Usuario usuario) {
+		this.usuario = usuario;
 	}
 
 	public Pet getPet() {

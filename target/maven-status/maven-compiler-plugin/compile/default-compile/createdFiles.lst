@@ -1,6 +1,9 @@
+centralpet\modelo\dao\usuario\UsuarioDAOImpl.class
 centralpet\modelo\dao\usuario\UsuarioDAO.class
+centralpet\modelo\dao\contato\ContatoDAOImpl.class
 centralpet\modelo\entidade\favorito\PetsFavoritosTutorId.class
 centralpet\modelo\entidade\favorito\PetsFavoritosTutorId_.class
+centralpet\Principal.class
 centralpet\modelo\enumeracao\pet\especie\EspeciePet.class
 centralpet\modelo\entidade\pet\Pet_.class
 centralpet\modelo\entidade\tutor\Tutor.class
@@ -24,10 +27,16 @@ centralpet\modelo\dao\adocao\AdocaoDAO.class
 centralpet\modelo\entidade\ong\Ong_.class
 centralpet\modelo\dao\ong\OngDAO.class
 centralpet\modelo\dao\pet\PetDAO.class
+centralpet\modelo\dao\petsFavoritosTutor\PetsFavoritosTutorDAOImpl.class
 centralpet\modelo\entidade\favorito\PetsFavoritosTutor_.class
 centralpet\modelo\entidade\tutor\Tutor_.class
 centralpet\modelo\entidade\termo\Termo_.class
 centralpet\modelo\dao\tutor\TutorDAOImpl.class
+centralpet\modelo\dao\ong\OngDAOImpl.class
+centralpet\modelo\dao\termo\TermoDAOImpl.class
+centralpet\modelo\dao\adocao\AdocaoDAOImpl.class
+centralpet\modelo\dao\endereco\EnderecoDAOImpl.class
+centralpet\modelo\dao\pet\PetDAOImpl.class
 centralpet\modelo\entidade\adocao\Adocao.class
 centralpet\modelo\entidade\usuario\Usuario_.class
 centralpet\modelo\enumeracao\adocao\StatusAdocao.class
