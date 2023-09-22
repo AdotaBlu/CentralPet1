@@ -1,6 +1,7 @@
  package centralpet;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 
 import centralpet.modelo.dao.adocao.AdocaoDAO;
@@ -13,6 +14,8 @@ import centralpet.modelo.dao.ong.OngDAO;
 import centralpet.modelo.dao.ong.OngDAOImpl;
 import centralpet.modelo.dao.pet.PetDAO;
 import centralpet.modelo.dao.pet.PetDAOImpl;
+import centralpet.modelo.dao.petsFavoritosTutor.PetsFavoritosTutorDAO;
+import centralpet.modelo.dao.petsFavoritosTutor.PetsFavoritosTutorDAOImpl;
 import centralpet.modelo.dao.termo.TermoDAO;
 import centralpet.modelo.dao.termo.TermoDAOImpl;
 import centralpet.modelo.dao.tutor.TutorDAO;
@@ -20,6 +23,7 @@ import centralpet.modelo.dao.tutor.TutorDAOImpl;
 import centralpet.modelo.entidade.adocao.Adocao;
 import centralpet.modelo.entidade.contato.Contato;
 import centralpet.modelo.entidade.endereco.Endereco;
+import centralpet.modelo.entidade.favorito.PetsFavoritosTutor;
 import centralpet.modelo.entidade.ong.Ong;
 import centralpet.modelo.entidade.pet.Pet;
 import centralpet.modelo.entidade.termo.Termo;
@@ -42,6 +46,7 @@ public class Principal {
 		PetDAO petDAO = new PetDAOImpl();
 		TermoDAO termoDAO = new TermoDAOImpl();
 		AdocaoDAO adocaoDAO = new AdocaoDAOImpl();
+		PetsFavoritosTutorDAO petsFavoritosTutorDAO = new PetsFavoritosTutorDAOImpl();
 
 		String logradouro = "rua XV setembro";
 		short numero = 356;
@@ -149,7 +154,6 @@ public class Principal {
 		String nomePet = "Java";
 		String vacinas = "Raiva";
 		String descricao = "Fofo, amigavel e companheiro";
-		Byte idade = 4;
 		StatusPet statusPet = StatusPet.DISPONIVEL;
 		PortePet portePet = PortePet.PEQUENO;
 		EspeciePet especiePet = EspeciePet.CACHORRO;
@@ -237,14 +241,30 @@ public class Principal {
 		
 		adocaoDAO.inserirAdocao(adocao2);
 		
-		List<Adocao> teste = null;
+		PetsFavoritosTutor petsFav = new PetsFavoritosTutor();
 		
-		teste = adocaoDAO.recuperarAdocoesTutor(tutor);
-
-		List<Ong> ongsPorBairro = null;
-		ongsPorBairro = ongDAO.recuperarOngBairro("t");
-		for(Ong ongTeste : ongsPorBairro) {
-			System.out.println(ongTeste.getNome());
+		petsFav.setUsuario(tutor);
+		petsFav.setPet(pet);
+		
+		petsFavoritosTutorDAO.inserirPetsFavoritados(petsFav);
+		
+		PetsFavoritosTutor petsFav2 = new PetsFavoritosTutor();
+		
+		petsFav2.setUsuario(tutor);
+		petsFav2.setPet(pet2);
+		
+		petsFavoritosTutorDAO.inserirPetsFavoritados(petsFav2);
+		
+		List<Pet> petsfavoritos = new ArrayList<>();
+		
+		petsfavoritos = petsFavoritosTutorDAO.petsFavoritadosTutor(tutor);
+		
+		for(Pet favsTutor : petsfavoritos) {
+			System.out.println(favsTutor.getNome());
+			
+			
 		}
+		
+		
 	} 
 }

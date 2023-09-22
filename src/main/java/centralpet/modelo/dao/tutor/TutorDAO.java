@@ -14,6 +14,4 @@ public interface TutorDAO {
 
 	List<Tutor> recuperarTodosTutores();
 
-	List<Tutor> recuperarPetsFavoritadosTutor(Tutor tutor);
-
 }

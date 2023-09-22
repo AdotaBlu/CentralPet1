@@ -15,8 +15,6 @@ import centralpet.modelo.entidade.endereco.Endereco_;
 import centralpet.modelo.entidade.ong.Ong;
 import centralpet.modelo.entidade.ong.Ong_;
 import centralpet.modelo.entidade.pet.Pet;
-import centralpet.modelo.entidade.usuario.Usuario;
-import centralpet.modelo.entidade.usuario.Usuario_;
 import centralpet.modelo.factory.conexao.ConexaoFactory;
 
 public class OngDAOImpl implements OngDAO {

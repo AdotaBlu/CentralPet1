@@ -4,14 +4,10 @@ import java.util.List;
 
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
-import javax.persistence.criteria.Join;
-import javax.persistence.criteria.ParameterExpression;
 import javax.persistence.criteria.Root;
-import org.hibernate.Session;
 
-import centralpet.modelo.entidade.pet.Pet;
+import org.hibernate.Session;
 import centralpet.modelo.entidade.tutor.Tutor;
-import centralpet.modelo.entidade.tutor.Tutor_;
 import centralpet.modelo.factory.conexao.ConexaoFactory;
 
 
@@ -190,52 +186,6 @@ public class TutorDAOImpl implements TutorDAO {
 		return tutores;
 
 	}
-
-	public List<Tutor> recuperarPetsFavoritadosTutor(Tutor tutor) {
-		Session sessao = null;
-		List<Tutor> petFavs = null;
-
-		try {
-
-			sessao = fabrica.getConexao().openSession();
-			sessao.beginTransaction();
-
-			CriteriaBuilder construtor = sessao.getCriteriaBuilder();
-
-			CriteriaQuery<Tutor> criteria = construtor.createQuery(Tutor.class);
-			Root<Tutor> raizEndereco = criteria.from(Tutor.class);
-
-			Join<Tutor, Pet> juncaoTutor = raizEndereco.join(Tutor_.petsFavoritados);
-
-			ParameterExpression<Long> idTutor = construtor.parameter(Long.class);
-			criteria.where(construtor.equal(juncaoTutor.get(Tutor_.ID), idTutor));
-
-			petFavs = sessao.createQuery(criteria).setParameter(idTutor, tutor.getId()).getResultList();
-
-			sessao.getTransaction().commit();
-
-		} catch (Exception sqlException) {
-
-			sqlException.printStackTrace();
-
-			if (sessao.getTransaction() != null) {
-
-				sessao.getTransaction().rollback();
-
-			}
-
-		} finally {
-
-			if (sessao != null) {
-
-				sessao.close();
-
-			}
-
-		}
-
-		return petFavs;
-
-	}
+	
 
 }

@@ -1,5 +1,6 @@
 C:\Users\erik.uller\eclipse-workspace\CentralPet\src\main\java\centralpet\modelo\dao\endereco\EnderecoDAOImpl.java
 C:\Users\erik.uller\eclipse-workspace\CentralPet\src\main\java\centralpet\modelo\dao\pet\PetDAO.java
+C:\Users\erik.uller\eclipse-workspace\CentralPet\src\main\java\centralpet\modelo\dao\petsFavoritosTutor\PetsFavoritosTutorDAO.java
 C:\Users\erik.uller\eclipse-workspace\CentralPet\src\main\java\centralpet\modelo\entidade\favorito\PetsFavoritosTutor.java
 C:\Users\erik.uller\eclipse-workspace\CentralPet\src\main\java\centralpet\modelo\entidade\contato\Contato.java
 C:\Users\erik.uller\eclipse-workspace\CentralPet\src\main\java\centralpet\modelo\entidade\tutor\Tutor.java
@@ -18,6 +19,7 @@ C:\Users\erik.uller\eclipse-workspace\CentralPet\src\main\java\centralpet\modelo
 C:\Users\erik.uller\eclipse-workspace\CentralPet\src\main\java\centralpet\Principal.java
 C:\Users\erik.uller\eclipse-workspace\CentralPet\src\main\java\centralpet\modelo\entidade\termo\Termo.java
 C:\Users\erik.uller\eclipse-workspace\CentralPet\src\main\java\centralpet\modelo\dao\adocao\AdocaoDAO.java
+C:\Users\erik.uller\eclipse-workspace\CentralPet\src\main\java\centralpet\modelo\dao\petsFavoritosTutor\PetsFavoritosTutorDAOImpl.java
 C:\Users\erik.uller\eclipse-workspace\CentralPet\src\main\java\centralpet\modelo\entidade\ong\Ong.java
 C:\Users\erik.uller\eclipse-workspace\CentralPet\src\main\java\centralpet\modelo\dao\termo\TermoDAOImpl.java
 C:\Users\erik.uller\eclipse-workspace\CentralPet\src\main\java\centralpet\modelo\enumeracao\pet\sexo\SexoPet.java
