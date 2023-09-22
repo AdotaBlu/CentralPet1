@@ -11,8 +11,8 @@ import org.hibernate.Session;
 
 import centralpet.modelo.entidade.favorito.PetsFavoritosTutor;
 import centralpet.modelo.entidade.favorito.PetsFavoritosTutor_;
-import centralpet.modelo.entidade.tutor.Tutor;
-import centralpet.modelo.entidade.tutor.Tutor_;
+import centralpet.modelo.entidade.pet.Pet;
+import centralpet.modelo.entidade.usuario.Usuario;
 import centralpet.modelo.factory.conexao.ConexaoFactory;
 
 public class PetsFavoritosTutorDAOImpl implements PetsFavoritosTutorDAO{
@@ -133,11 +133,11 @@ public class PetsFavoritosTutorDAOImpl implements PetsFavoritosTutorDAO{
 
 	
 	
-	public List<PetsFavoritosTutor> petsFavoritadosTutor(Tutor tutor) {
+	public List<Pet> petsFavoritadosTutor(Usuario usuario) {
 		
 		Session sessao = null;
 		
-		List<PetsFavoritosTutor> petsFavoritos = null;
+		List<Pet> petsFavoritos = null;
 		
 		try {
 			sessao = fabrica.getConexao().openSession();
@@ -145,15 +145,15 @@ public class PetsFavoritosTutorDAOImpl implements PetsFavoritosTutorDAO{
 			
 			CriteriaBuilder construtor = sessao.getCriteriaBuilder();
 			
-			CriteriaQuery<PetsFavoritosTutor> criteria = construtor.createQuery(PetsFavoritosTutor.class);
+			CriteriaQuery<Pet> criteria = construtor.createQuery(Pet.class);
 			
 			Root<PetsFavoritosTutor> raizFavaritos = criteria.from(PetsFavoritosTutor.class);
 			
-			Join<PetsFavoritosTutor, Tutor> juncaoTutor = raizFavaritos.join("id_usuario");
+			Join<PetsFavoritosTutor, Usuario> juncaoTutor = raizFavaritos.join("usuario");
 			
-			criteria.select(raizFavaritos);
+			criteria.select(raizFavaritos.get(PetsFavoritosTutor_.pet));
 			
-			criteria.where(construtor.equal(raizFavaritos.get(PetsFavoritosTutor_.tutor), juncaoTutor.get(Tutor_.id)));
+			criteria.where(construtor.equal(juncaoTutor, usuario.getId()));
 			
 			petsFavoritos = sessao.createQuery(criteria).getResultList();
 			

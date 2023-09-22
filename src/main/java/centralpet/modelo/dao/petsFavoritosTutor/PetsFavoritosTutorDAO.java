@@ -3,7 +3,8 @@ package centralpet.modelo.dao.petsFavoritosTutor;
 import java.util.List;
 
 import centralpet.modelo.entidade.favorito.PetsFavoritosTutor;
-import centralpet.modelo.entidade.tutor.Tutor;
+import centralpet.modelo.entidade.pet.Pet;
+import centralpet.modelo.entidade.usuario.Usuario;
 
 public interface PetsFavoritosTutorDAO {
 
@@ -13,5 +14,5 @@ public interface PetsFavoritosTutorDAO {
 
 	void atualizarPetsFavoritados(PetsFavoritosTutor petFavoritado);
 	
-	List<PetsFavoritosTutor> petsFavoritadosTutor(Tutor tutor);
+	List<Pet> petsFavoritadosTutor(Usuario usuario);
 }

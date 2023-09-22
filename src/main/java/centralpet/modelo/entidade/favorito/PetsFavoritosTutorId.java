@@ -5,7 +5,7 @@ import java.util.Objects;
 
 import javax.persistence.Embeddable;
 
-@Embeddable
+	@Embeddable
 	public class PetsFavoritosTutorId implements Serializable {
 
 		private static final long serialVersionUID = 1L;
