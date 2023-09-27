@@ -21,6 +21,7 @@ public class ConexaoFactory {
 		configuracao.addAnnotatedClass(centralpet.modelo.entidade.termo.Termo.class);
 		configuracao.addAnnotatedClass(centralpet.modelo.entidade.favorito.PetsFavoritosTutor.class);
 		configuracao.addAnnotatedClass(centralpet.modelo.entidade.favorito.PetsFavoritosTutorId.class);
+		configuracao.addAnnotatedClass(centralpet.modelo.entidade.visita.Visita.class);
 
 		configuracao.configure("hibernate.cfg.xml");
 
