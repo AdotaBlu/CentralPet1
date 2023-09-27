@@ -16,6 +16,7 @@ C:\Users\lorenco.oliveira\eclipse-workspace\CentralPet\src\main\java\centralpet\
 C:\Users\lorenco.oliveira\eclipse-workspace\CentralPet\src\main\java\centralpet\modelo\dao\ong\OngDAO.java
 C:\Users\lorenco.oliveira\eclipse-workspace\CentralPet\src\main\java\centralpet\modelo\dao\pet\PetDAOImpl.java
 C:\Users\lorenco.oliveira\eclipse-workspace\CentralPet\src\main\java\centralpet\modelo\dao\tutor\TutorDAOImpl.java
+C:\Users\lorenco.oliveira\eclipse-workspace\CentralPet\src\main\java\centralpet\modelo\entidade\pendencia\Pendencia.java
 C:\Users\lorenco.oliveira\eclipse-workspace\CentralPet\src\main\java\centralpet\modelo\dao\petsFavoritosTutor\PetsFavoritosTutorDAOImpl.java
 C:\Users\lorenco.oliveira\eclipse-workspace\CentralPet\src\main\java\centralpet\modelo\entidade\usuario\Usuario.java
 C:\Users\lorenco.oliveira\eclipse-workspace\CentralPet\src\main\java\centralpet\modelo\enumeracao\adocao\StatusAdocao.java
@@ -28,6 +29,7 @@ C:\Users\lorenco.oliveira\eclipse-workspace\CentralPet\src\main\java\centralpet\
 C:\Users\lorenco.oliveira\eclipse-workspace\CentralPet\src\main\java\centralpet\modelo\dao\ong\OngDAOImpl.java
 C:\Users\lorenco.oliveira\eclipse-workspace\CentralPet\src\main\java\centralpet\modelo\dao\adocao\AdocaoDAO.java
 C:\Users\lorenco.oliveira\eclipse-workspace\CentralPet\src\main\java\centralpet\modelo\dao\contato\ContatoDAOImpl.java
+C:\Users\lorenco.oliveira\eclipse-workspace\CentralPet\src\main\java\centralpet\modelo\enumeracao\pendencia\StatusPendencia.java
 C:\Users\lorenco.oliveira\eclipse-workspace\CentralPet\src\main\java\centralpet\modelo\dao\termo\TermoDAO.java
 C:\Users\lorenco.oliveira\eclipse-workspace\CentralPet\src\main\java\centralpet\modelo\dao\usuario\UsuarioDAOImpl.java
 C:\Users\lorenco.oliveira\eclipse-workspace\CentralPet\src\main\java\centralpet\modelo\entidade\favorito\PetsFavoritosTutor.java
@@ -35,3 +37,4 @@ C:\Users\lorenco.oliveira\eclipse-workspace\CentralPet\src\main\java\centralpet\
 C:\Users\lorenco.oliveira\eclipse-workspace\CentralPet\src\main\java\centralpet\modelo\entidade\endereco\Endereco.java
 C:\Users\lorenco.oliveira\eclipse-workspace\CentralPet\src\main\java\centralpet\modelo\entidade\adocao\Adocao.java
 C:\Users\lorenco.oliveira\eclipse-workspace\CentralPet\src\main\java\centralpet\Principal.java
+C:\Users\lorenco.oliveira\eclipse-workspace\CentralPet\src\main\java\centralpet\modelo\enumeracao\acompanhamento\StatusAcompanhamento.java

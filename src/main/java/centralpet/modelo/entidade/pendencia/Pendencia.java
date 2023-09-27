@@ -3,6 +3,7 @@ package centralpet.modelo.entidade.pendencia;
 import java.time.LocalDate;
 
 import centralpet.modelo.entidade.acompanhamento.Acompanhamento;
+import centralpet.modelo.enumeracao.pendencia.StatusPendencia;
 
 public class Pendencia {
 
@@ -11,25 +12,29 @@ public class Pendencia {
 	private String motivo;
 	private String observacao;
 	private Acompanhamento acompanhamento;
+	private StatusPendencia statusPendencia;
 
 	public Pendencia() {
 	}
 
-	public Pendencia(LocalDate dataPendencia, String motivo, String observacao, Acompanhamento acompanhamento) {
+	public Pendencia(LocalDate dataPendencia, String motivo, String observacao, Acompanhamento acompanhamento,
+			StatusPendencia statusPendencia) {
 		setDataPendencia(dataPendencia);
 		setMotivo(motivo);
 		setObservacao(observacao);
 		setAcompanhamento(acompanhamento);
+		setStatusPendencia(statusPendencia);
 
 	}
 
-	public Pendencia(long id, LocalDate dataPendencia, String motivo, String observacao,
-			Acompanhamento acompanhamento) {
+	public Pendencia(long id, LocalDate dataPendencia, String motivo, String observacao, Acompanhamento acompanhamento,
+			StatusPendencia statusPendencia) {
 		setId(id);
 		setDataPendencia(dataPendencia);
 		setMotivo(motivo);
 		setObservacao(observacao);
 		setAcompanhamento(acompanhamento);
+		setStatusPendencia(statusPendencia);
 
 	}
 
@@ -71,6 +76,14 @@ public class Pendencia {
 
 	public void setAcompanhamento(Acompanhamento acompanhamento) {
 		this.acompanhamento = acompanhamento;
+	}
+
+	public StatusPendencia getStatusPendencia() {
+		return statusPendencia;
+	}
+
+	public void setStatusPendencia(StatusPendencia statusPendencia) {
+		this.statusPendencia = statusPendencia;
 	}
 
 }

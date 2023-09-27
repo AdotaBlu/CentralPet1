@@ -12,8 +12,10 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
+import centralpet.modelo.entidade.acompanhamento.Acompanhamento;
 import centralpet.modelo.entidade.ong.Ong;
 import centralpet.modelo.enumeracao.pet.especie.EspeciePet;
 import centralpet.modelo.enumeracao.pet.porte.PortePet;
@@ -23,49 +25,55 @@ import centralpet.modelo.enumeracao.pet.status.StatusPet;
 @Entity
 @Table(name = "pet")
 public class Pet implements Serializable {
-	
+
 	private static final long serialVersionUID = 1L;
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "id_pet")
 	private Long id;
-	
+
 	@Column(name = "nome_pet", length = 45, nullable = false, unique = false)
 	private String nome;
-	
+
 	@Column(name = "vacinas_pet", length = 45, nullable = false, unique = false)
 	private String vacinas;
-	
+
 	@Column(name = "descricao_pet", length = 60, nullable = false, unique = false)
 	private String descricao;
-	
+
 	@Column(name = "idade_pet", nullable = false, unique = false)
 	private byte idade;
-	
+
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "id_ong", nullable = false)
 	private Ong ong;
-	
+
 	@Enumerated(EnumType.ORDINAL)
 	@Column(name = "status_pet", nullable = false, unique = false)
 	private StatusPet statusPet;
-	
+
 	@Enumerated(EnumType.ORDINAL)
 	@Column(name = "porte_pet", nullable = false, unique = false)
 	private PortePet portePet;
-	
+
 	@Enumerated(EnumType.ORDINAL)
 	@Column(name = "especie_pet", nullable = false, unique = false)
 	private EspeciePet especiePet;
-	
+
 	@Enumerated(EnumType.ORDINAL)
 	@Column(name = "sexo_pet", nullable = false, unique = false)
 	private SexoPet sexoPet;
-	
-	public Pet () {}
-	
-	public Pet (String nome, String vacinas, String descricao, byte idade, Ong ong, StatusPet statusPet, PortePet portePet, EspeciePet especiePet, SexoPet sexoPet) {
+
+	//@OneToOne(fetch = FetchType.LAZY)
+	//@JoinColumn(name = "id_acompanhamento", nullable = true)
+	private Acompanhamento acompanhamento;
+
+	public Pet() {
+	}
+
+	public Pet(String nome, String vacinas, String descricao, byte idade, Ong ong, StatusPet statusPet,
+			PortePet portePet, EspeciePet especiePet, SexoPet sexoPet, Acompanhamento acompanhamento) {
 		setNome(nome);
 		setVacinas(vacinas);
 		setDescricao(descricao);
@@ -75,9 +83,11 @@ public class Pet implements Serializable {
 		setPortePet(portePet);
 		setEspeciePet(especiePet);
 		setSexoPet(sexoPet);
+		setAcompanhamento(acompanhamento);
 	}
 
-	public Pet (Long id, String nome, String vacinas, String descricao, byte idade, Ong ong, StatusPet statusPet, PortePet portePet, EspeciePet especiePet, SexoPet sexoPet) {
+	public Pet(Long id, String nome, String vacinas, String descricao, byte idade, Ong ong, StatusPet statusPet,
+			PortePet portePet, EspeciePet especiePet, SexoPet sexoPet, Acompanhamento acompanhamento) {
 		setId(id);
 		setNome(nome);
 		setVacinas(vacinas);
@@ -88,8 +98,9 @@ public class Pet implements Serializable {
 		setPortePet(portePet);
 		setEspeciePet(especiePet);
 		setSexoPet(sexoPet);
+		setAcompanhamento(acompanhamento);
 	}
-	
+
 	public String getNome() {
 		return nome;
 	}
@@ -168,6 +179,14 @@ public class Pet implements Serializable {
 
 	public void setSexoPet(SexoPet sexoPet) {
 		this.sexoPet = sexoPet;
+	}
+
+	public Acompanhamento getAcompanhamento() {
+		return acompanhamento;
+	}
+
+	public void setAcompanhamento(Acompanhamento acompanhamento) {
+		this.acompanhamento = acompanhamento;
 	}
 
 }
