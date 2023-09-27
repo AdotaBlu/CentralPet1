@@ -2,34 +2,65 @@ package centralpet.modelo.entidade.pet;
 
 import java.io.Serializable;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.Table;
+
 import centralpet.modelo.entidade.ong.Ong;
 import centralpet.modelo.enumeracao.pet.especie.EspeciePet;
 import centralpet.modelo.enumeracao.pet.porte.PortePet;
 import centralpet.modelo.enumeracao.pet.sexo.SexoPet;
 import centralpet.modelo.enumeracao.pet.status.StatusPet;
 
+@Entity
+@Table(name = "pet")
 public class Pet implements Serializable {
 	
 	private static final long serialVersionUID = 1L;
 
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "id_pet")
 	private Long id;
 	
+	@Column(name = "nome_pet", length = 45, nullable = false, unique = false)
 	private String nome;
 	
+	@Column(name = "vacinas_pet", length = 45, nullable = false, unique = false)
 	private String vacinas;
 	
+	@Column(name = "descricao_pet", length = 60, nullable = false, unique = false)
 	private String descricao;
 	
+	@Column(name = "idade_pet", nullable = false, unique = false)
 	private byte idade;
 	
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "id_ong", nullable = false)
 	private Ong ong;
 	
+	@Enumerated(EnumType.ORDINAL)
+	@Column(name = "status_pet", nullable = false, unique = false)
 	private StatusPet statusPet;
 	
+	@Enumerated(EnumType.ORDINAL)
+	@Column(name = "porte_pet", nullable = false, unique = false)
 	private PortePet portePet;
 	
+	@Enumerated(EnumType.ORDINAL)
+	@Column(name = "especie_pet", nullable = false, unique = false)
 	private EspeciePet especiePet;
 	
+	@Enumerated(EnumType.ORDINAL)
+	@Column(name = "sexo_pet", nullable = false, unique = false)
 	private SexoPet sexoPet;
 	
 	public Pet () {}
@@ -138,5 +169,5 @@ public class Pet implements Serializable {
 	public void setSexoPet(SexoPet sexoPet) {
 		this.sexoPet = sexoPet;
 	}
-	
+
 }

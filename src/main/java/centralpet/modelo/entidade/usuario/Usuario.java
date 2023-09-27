@@ -9,17 +9,16 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Inheritance;
+import javax.persistence.InheritanceType;
 import javax.persistence.JoinColumn;
-import javax.persistence.MapsId;
-import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
+import javax.persistence.ManyToOne;
+import javax.persistence.Table;
 
-import org.hibernate.annotations.Table;
-
-import centralpet.modelo.entidade.contato.Contato;
 import centralpet.modelo.entidade.endereco.Endereco;
 
 @Entity
+@Inheritance(strategy = InheritanceType.JOINED)
 @Table(name = "usuario")
 
 public abstract class Usuario implements Serializable {
@@ -31,42 +30,32 @@ public abstract class Usuario implements Serializable {
 	@Column(name = "id_usuario")
 	private Long id;
 
-	@Column(name = "nome", length = 45, nullable = false, unique = false)
+	@Column(name = "nome_usuario", length = 45, nullable = false, unique = false)
 	private String nome;
 
-	@Column(name = "endereco", nullable = false, unique = false)
-	@OneToMany(fetch = FetchType.LAZY)
-	@MapsId
+	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "id_endereco")
 	private Endereco endereco;
 
-	@Column(name = "contato", nullable = false, unique = false)
-	@OneToOne(fetch = FetchType.LAZY)
-	@MapsId
-	@JoinColumn(name = "id_contato")
-	private Contato contato;
-
-	@Column(name = "dataCadastro", nullable = false, unique = false)
+	@Column(name = "data_cadastro_usuario", nullable = false, unique = false)
 	private LocalDate dataCadastro;
 
-	@Column(name = "dataCadastro", nullable = true, unique = false)
+	@Column(name = "data_alteracao_cadastro_usuario", nullable = true, unique = false)
 	private LocalDate dataAlteracaoCadastro;
 
 	public Usuario () {}
 	
-	public Usuario (String nome, Endereco endereco, Contato contato) {
+	public Usuario (String nome, Endereco endereco) {
 		setNome(nome);
 		setEndereco(endereco);
-		setContato(contato);
 		setDataCadastro(dataCadastro);
 		setDataAlteracaoCadastro(dataAlteracaoCadastro);
 	}
 	
-	public Usuario (Long id, String nome, Endereco endereco, Contato contato) {
+	public Usuario (Long id, String nome, Endereco endereco) {
 		setId(id);
 		setNome(nome);
 		setEndereco(endereco);
-		setContato(contato);
 	}
 
 	public Long getId() {
@@ -91,14 +80,6 @@ public abstract class Usuario implements Serializable {
 
 	public void setEndereco(Endereco endereco) {
 		this.endereco = endereco;
-	}
-
-	public Contato getContato() {
-		return contato;
-	}
-
-	public void setContato(Contato contato) {
-		this.contato = contato;
 	}
 	
 	public LocalDate getDataCadastro () {

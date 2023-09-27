@@ -5,51 +5,54 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
-import centralpet.modelo.entidade.contato.Contato;
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
+import javax.persistence.FetchType;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
+
+import centralpet.modelo.entidade.adocao.Adocao;
 import centralpet.modelo.entidade.endereco.Endereco;
-import centralpet.modelo.entidade.pet.Pet;
 import centralpet.modelo.entidade.usuario.Usuario;
 import centralpet.modelo.enumeracao.genero.GeneroTutor;
 
+@Entity
+@Table(name = "tutor")
 public class Tutor extends Usuario implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 	
-	private Long id;
-	
+	@Column(name = "cpf_tutor", length = 11, nullable = false, unique = true)
 	private String cpf;
 	
+	@Column(name = "data_nascimento_tutor", nullable = false, unique = false)
 	private LocalDate dataNascimento;
 	
+	@Enumerated(EnumType.ORDINAL)
+	@Column(name = "genero_tutor", nullable = false, unique = false)
 	private GeneroTutor generoTutor;
 	
-	private List<Pet> petsAdotados = new ArrayList<>();
-	
-	private List<Pet> petsFavoritados = new ArrayList<>();
+	@OneToMany(fetch = FetchType.LAZY,mappedBy = "tutor", cascade = CascadeType.ALL, orphanRemoval = true)
+	private List<Adocao> adocoes = new ArrayList<>();
 	
 	public Tutor () {}
 	
-	public Tutor (String nome, Endereco endereco, Contato contato, String cpf, LocalDate datanascimento, GeneroTutor generoTutor) {
-		super(nome, endereco, contato);
+	public Tutor (String nome, Endereco endereco, String cpf, LocalDate datanascimento, GeneroTutor generoTutor) {
+		super(nome, endereco);
 		setCpf(cpf);
 		setDataNascimento(datanascimento);
 		setGeneroTutor(generoTutor);
 	}
 	
-	public Tutor (String nome, Endereco endereco, Contato contato, Long id, String cpf, LocalDate datanascimento, GeneroTutor generoTutor) {
-		super(nome, endereco, contato);
+	public Tutor (String nome, Endereco endereco, Long id, String cpf, LocalDate datanascimento, GeneroTutor generoTutor) {
+		super(nome, endereco);
 		setId(id);
 		setCpf(cpf);
 		setDataNascimento(datanascimento);
 		setGeneroTutor(generoTutor);
-	}
-
-	public Long getId() {
-		return id;
-	}
-
-	public void setId(Long id) {
-		this.id = id;
 	}
 
 	public String getCpf() {
@@ -76,28 +79,16 @@ public class Tutor extends Usuario implements Serializable {
 		this.generoTutor = generoTutor;
 	}
 	
-	public List<Pet> getPetsAdotados() {
-		return petsAdotados;
+	public List<Adocao> getAdocoes() {
+		return adocoes;
 	}
 	
-	public void adotarPet (Pet pet) {
-		this.petsAdotados.add(pet);
+	public void adocaoFeita (Adocao adocao) {
+		this.adocoes.add(adocao);
 	}
 	
-	public void devolverPet (Pet pet) {
-		this.petsAdotados.remove(pet);
-	}
-	
-	public List<Pet> getPetsFavoritados() {
-		return petsFavoritados;
-	}
-	
-	public void favoritarPet (Pet pet) {
-		this.petsFavoritados.add(pet);
-	}
-	
-	public void desFavoritarPet (Pet pet) {
-		this.petsFavoritados.remove(pet);
+	public void adocaoDesfeita (Adocao adocao) {
+		this.adocoes.remove(adocao);
 	}
 	
 }

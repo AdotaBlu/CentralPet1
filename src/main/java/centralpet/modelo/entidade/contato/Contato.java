@@ -9,11 +9,11 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.MapsId;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 import centralpet.modelo.entidade.usuario.Usuario;
+
 
 @Entity
 @Table(name = "contato")
@@ -33,21 +33,22 @@ public class Contato implements Serializable {
 	private String telefone;
 	
 	@OneToOne(fetch = FetchType.LAZY)
-	@MapsId
 	@JoinColumn(name = "id_usuario")
 	private Usuario usuario;
 	
 	public Contato () {}
 	
-	public Contato (String email, String telefone) {
+	public Contato (String email, String telefone, Usuario usuario) {
 		setEmail(email);
 		setTelefone(telefone);
+		setUsuario(usuario);
 	}
 	
-	public Contato (Long id, String email, String telefone) {
+	public Contato (Long id, String email, String telefone, Usuario usuario) {
 		setId(id);
 		setEmail(email);
 		setTelefone(telefone);
+		setUsuario(usuario);
 	}
 	
 	public Long getId () {
@@ -58,7 +59,7 @@ public class Contato implements Serializable {
 		this.id = id;
 	}
 	
-	public String email () {
+	public String getEmail () {
 		return email;
 	}
 	
@@ -66,7 +67,7 @@ public class Contato implements Serializable {
 		this.email = email;
 	}
 	
-	public String telefone () {
+	public String getTelefone () {
 		return telefone;
 	}
 	
@@ -81,7 +82,5 @@ public class Contato implements Serializable {
 	public void setUsuario(Usuario usuario) {
 		this.usuario = usuario;
 	}
-	
-	
 	
 }
