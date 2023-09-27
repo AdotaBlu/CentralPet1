@@ -1,24 +1,28 @@
 package centralpet.modelo.entidade.acompanhamento;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
+import centralpet.modelo.entidade.adocao.Adocao;
 import centralpet.modelo.entidade.ong.Ong;
+import centralpet.modelo.entidade.pendencia.Pendencia;
 import centralpet.modelo.entidade.pet.Pet;
 import centralpet.modelo.entidade.tutor.Tutor;
-import centralpet.modelo.entidade.adocao.Adocao;
 
 public class Acompanhamento {
 
 	private Long id;
 	private byte video;
 	private byte foto;
-	private String observacao;
+	private String situacaoPet;
 	private LocalDate dataEnvioVideo;
 	private LocalDate dataEnvioFoto;
 	private Ong ong;
 	private Tutor tutor;
 	private Pet pet;
 	private Adocao adocao;
+	private List<Pendencia> historicoAcompanhamento = new ArrayList<>();
 
 	public Acompanhamento() {
 	}
@@ -27,7 +31,7 @@ public class Acompanhamento {
 	public Acompanhamento(byte video, byte foto, String observacao, LocalDate dataEnvioVideo, LocalDate dataEnvioFoto) {
 		setVideo(video);
 		setFoto(foto);
-		setObservacao(observacao);
+		setSituacaoPet(situacaoPet);
 		setDataEnvioVideo(dataEnvioVideo);
 		setDataEnvioFoto(dataEnvioFoto);
 		setOng(ong);
@@ -42,7 +46,7 @@ public class Acompanhamento {
 		setId(id);
 		setVideo(video);
 		setFoto(foto);
-		setObservacao(observacao);
+		setSituacaoPet(situacaoPet);
 		setDataEnvioVideo(dataEnvioVideo);
 		setDataEnvioFoto(dataEnvioFoto);
 		setOng(ong);
@@ -75,12 +79,12 @@ public class Acompanhamento {
 		this.foto = foto;
 	}
 
-	public String getObservacao() {
-		return observacao;
+	public String getSituacaoPet() {
+		return situacaoPet;
 	}
 
-	public void setObservacao(String observacao) {
-		this.observacao = observacao;
+	public void setSituacaoPet(String observacao) {
+		this.situacaoPet = observacao;
 	}
 
 	public LocalDate getDataEnvioVideo() {
@@ -122,11 +126,16 @@ public class Acompanhamento {
 	public void setPet(Pet pet) {
 		this.pet = pet;
 	}
+
 	public Adocao getAdocao() {
 		return adocao;
 	}
-	
+
 	public void setAdocao(Adocao adocao) {
 		this.adocao = adocao;
+	}
+
+	public List<Pendencia> getPendencia() {
+		return historicoAcompanhamento;
 	}
 }
