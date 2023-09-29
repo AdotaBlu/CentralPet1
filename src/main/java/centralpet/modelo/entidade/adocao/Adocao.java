@@ -16,6 +16,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
+import centralpet.modelo.entidade.acompanhamento.Acompanhamento;
 import centralpet.modelo.entidade.ong.Ong;
 import centralpet.modelo.entidade.pet.Pet;
 import centralpet.modelo.entidade.termo.Termo;
@@ -32,44 +33,50 @@ public class Adocao implements Serializable {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "id_adocao")
 	private Long id;
-	
+
 	@OneToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "id_pet")
 	private Pet pet;
-	
+
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "id_ong")
 	private Ong ong;
-	
+
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "id_tutor")
 	private Tutor tutor;
-	
+
 	@OneToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "id_termo")
 	private Termo termo;
-	
+
 	@Enumerated(EnumType.ORDINAL)
 	@Column(name = "status_adocao", nullable = false, unique = false)
 	private StatusAdocao statusAdocao;
-	
+
 	@Column(name = "data_adocao", nullable = false, unique = false)
 	private LocalDate dataAdocao;
-	
-	
-	
-	public Adocao () {}
-	
-	public Adocao (Pet pet, Ong ong, Tutor tutor, Termo termo, StatusAdocao statusAdocao, LocalDate dataAdocao) {
+
+	//@OneToOne(fetch = FetchType.LAZY)
+	//@JoinColumn(name = "id_acompanhamento", nullable = true)
+	//private Acompanhamento acompanhamento;
+
+	public Adocao() {
+	}
+
+	public Adocao(Pet pet, Ong ong, Tutor tutor, Termo termo, StatusAdocao statusAdocao, LocalDate dataAdocao,
+			Acompanhamento acompanhamento) {
 		setPet(pet);
 		setOng(ong);
 		setTutor(tutor);
 		setTermo(termo);
 		setStatusAdocao(statusAdocao);
 		setDataAdocao(dataAdocao);
+//		setAcompanhamento(acompanhamento);
 	}
-	
-	public Adocao (Long id, Pet pet, Ong ong, Tutor tutor, Termo termo, StatusAdocao statusAdocao, LocalDate dataAdocao) {
+
+	public Adocao(Long id, Pet pet, Ong ong, Tutor tutor, Termo termo, StatusAdocao statusAdocao, LocalDate dataAdocao,
+			Acompanhamento acompanhamento) {
 		setId(id);
 		setPet(pet);
 		setOng(ong);
@@ -77,6 +84,7 @@ public class Adocao implements Serializable {
 		setTermo(termo);
 		setStatusAdocao(statusAdocao);
 		setDataAdocao(dataAdocao);
+//		setAcompanhamento(acompanhamento);
 	}
 
 	public Long getId() {
@@ -135,5 +143,12 @@ public class Adocao implements Serializable {
 		dataAdocao = LocalDate.now();
 		this.dataAdocao = dataAdocao;
 	}
-	
+
+//	public Acompanhamento getAcompanhamento() {
+//		return acompanhamento;
+//	}
+//
+//	public void setAcompanhamento(Acompanhamento acompanhamento) {
+//		this.acompanhamento = acompanhamento;
+//	}
 }
