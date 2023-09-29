@@ -43,7 +43,7 @@ public class Tutor extends Usuario implements Serializable {
 
 	//@OneToOne(fetch = FetchType.LAZY)
 	//@JoinColumn(name = "id_acompanhamento", nullable = true)
-	private Acompanhamento acompanhamento;
+	//private Acompanhamento acompanhamento;
 
 	public Tutor() {
 	}
@@ -54,7 +54,7 @@ public class Tutor extends Usuario implements Serializable {
 		setCpf(cpf);
 		setDataNascimento(datanascimento);
 		setGeneroTutor(generoTutor);
-		setAcompanhamento(acompanhamento);
+		//setAcompanhamento(acompanhamento);
 	}
 
 	public Tutor(String nome, Endereco endereco, Long id, String cpf, LocalDate datanascimento, GeneroTutor generoTutor,
@@ -64,7 +64,7 @@ public class Tutor extends Usuario implements Serializable {
 		setCpf(cpf);
 		setDataNascimento(datanascimento);
 		setGeneroTutor(generoTutor);
-		setAcompanhamento(acompanhamento);
+		//setAcompanhamento(acompanhamento);
 	}
 
 	public String getCpf() {
@@ -103,11 +103,11 @@ public class Tutor extends Usuario implements Serializable {
 		this.adocoes.remove(adocao);
 	}
 
-	public Acompanhamento getAcompanhamento() {
-		return acompanhamento;
-	}
-
-	public void setAcompanhamento(Acompanhamento acompanhamento) {
-		this.acompanhamento = acompanhamento;
-	}
+//	public Acompanhamento getAcompanhamento() {
+//		return acompanhamento;
+//	}
+//
+//	public void setAcompanhamento(Acompanhamento acompanhamento) {
+//		this.acompanhamento = acompanhamento;
+//	}
 }

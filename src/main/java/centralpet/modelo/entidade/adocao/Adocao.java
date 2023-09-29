@@ -59,7 +59,7 @@ public class Adocao implements Serializable {
 
 	//@OneToOne(fetch = FetchType.LAZY)
 	//@JoinColumn(name = "id_acompanhamento", nullable = true)
-	private Acompanhamento acompanhamento;
+	//private Acompanhamento acompanhamento;
 
 	public Adocao() {
 	}
@@ -72,7 +72,7 @@ public class Adocao implements Serializable {
 		setTermo(termo);
 		setStatusAdocao(statusAdocao);
 		setDataAdocao(dataAdocao);
-		setAcompanhamento(acompanhamento);
+//		setAcompanhamento(acompanhamento);
 	}
 
 	public Adocao(Long id, Pet pet, Ong ong, Tutor tutor, Termo termo, StatusAdocao statusAdocao, LocalDate dataAdocao,
@@ -84,7 +84,7 @@ public class Adocao implements Serializable {
 		setTermo(termo);
 		setStatusAdocao(statusAdocao);
 		setDataAdocao(dataAdocao);
-		setAcompanhamento(acompanhamento);
+//		setAcompanhamento(acompanhamento);
 	}
 
 	public Long getId() {
@@ -144,11 +144,11 @@ public class Adocao implements Serializable {
 		this.dataAdocao = dataAdocao;
 	}
 
-	public Acompanhamento getAcompanhamento() {
-		return acompanhamento;
-	}
-
-	public void setAcompanhamento(Acompanhamento acompanhamento) {
-		this.acompanhamento = acompanhamento;
-	}
+//	public Acompanhamento getAcompanhamento() {
+//		return acompanhamento;
+//	}
+//
+//	public void setAcompanhamento(Acompanhamento acompanhamento) {
+//		this.acompanhamento = acompanhamento;
+//	}
 }

@@ -2,9 +2,14 @@ package centralpet.modelo.entidade.pendencia;
 
 import java.time.LocalDate;
 
+import javax.persistence.Entity;
+import javax.persistence.Table;
+
 import centralpet.modelo.entidade.acompanhamento.Acompanhamento;
 import centralpet.modelo.enumeracao.pendencia.StatusPendencia;
 
+//@Entity
+//@Table(name = "pendencia")
 public class Pendencia {
 
 	private long id;

@@ -65,9 +65,9 @@ public class Pet implements Serializable {
 	@Column(name = "sexo_pet", nullable = false, unique = false)
 	private SexoPet sexoPet;
 
-	//@OneToOne(fetch = FetchType.LAZY)
-	//@JoinColumn(name = "id_acompanhamento", nullable = true)
-	private Acompanhamento acompanhamento;
+//	@OneToOne(fetch = FetchType.LAZY)
+//	@JoinColumn(name = "id_acompanhamento", nullable = true)
+//	private Acompanhamento acompanhamento;
 
 	public Pet() {
 	}
@@ -83,7 +83,7 @@ public class Pet implements Serializable {
 		setPortePet(portePet);
 		setEspeciePet(especiePet);
 		setSexoPet(sexoPet);
-		setAcompanhamento(acompanhamento);
+//		setAcompanhamento(acompanhamento);
 	}
 
 	public Pet(Long id, String nome, String vacinas, String descricao, byte idade, Ong ong, StatusPet statusPet,
@@ -98,7 +98,7 @@ public class Pet implements Serializable {
 		setPortePet(portePet);
 		setEspeciePet(especiePet);
 		setSexoPet(sexoPet);
-		setAcompanhamento(acompanhamento);
+//		setAcompanhamento(acompanhamento);
 	}
 
 	public String getNome() {
@@ -181,12 +181,12 @@ public class Pet implements Serializable {
 		this.sexoPet = sexoPet;
 	}
 
-	public Acompanhamento getAcompanhamento() {
-		return acompanhamento;
-	}
-
-	public void setAcompanhamento(Acompanhamento acompanhamento) {
-		this.acompanhamento = acompanhamento;
-	}
+//	public Acompanhamento getAcompanhamento() {
+//		return acompanhamento;
+//	}
+//
+//	public void setAcompanhamento(Acompanhamento acompanhamento) {
+//		this.acompanhamento = acompanhamento;
+//	}
 
 }

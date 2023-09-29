@@ -36,7 +36,7 @@ public class Ong extends Usuario implements Serializable {
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "ong", cascade = CascadeType.ALL, orphanRemoval = true)
 	private List<Adocao> doacoes = new ArrayList<>();
 
-	//@OneToMany(fetch = FetchType.LAZY, mappedBy = "ong", cascade = CascadeType.ALL, orphanRemoval = true)
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "ong", cascade = CascadeType.ALL, orphanRemoval = true)
 	private List<Acompanhamento> acompanhamentos = new ArrayList<>();
 
 	public Ong() {
@@ -99,10 +99,6 @@ public class Ong extends Usuario implements Serializable {
 
 	public List<Acompanhamento> getAcompanhamentos() {
 		return acompanhamentos;
-	}
-
-	public void setAcompanhamentos(List<Acompanhamento> acompanhamentos) {
-		this.acompanhamentos = acompanhamentos;
 	}
 
 	public void adicionarAcompanhamento(Acompanhamento acompanhamento) {

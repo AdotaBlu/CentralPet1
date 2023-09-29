@@ -1,11 +1,9 @@
 package centralpet.modelo.entidade.acompanhamento;
 
 import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.List;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
+import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.FetchType;
@@ -14,17 +12,18 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
+import javax.persistence.Table;
 
 import centralpet.modelo.entidade.adocao.Adocao;
 import centralpet.modelo.entidade.ong.Ong;
-import centralpet.modelo.entidade.pendencia.Pendencia;
 import centralpet.modelo.entidade.pet.Pet;
 import centralpet.modelo.entidade.tutor.Tutor;
 import centralpet.modelo.enumeracao.acompanhamento.StatusAcompanhamento;
 
-public class Acompanhamento {
+@Entity
+@Table(name = "acompanhamento")
+ public class Acompanhamento {
 
 	private static final long serialVersionUID = 1L;
 
@@ -33,23 +32,23 @@ public class Acompanhamento {
 	@Column(name = "id_acompanhamento")
 	private Long id;
 
-	@Column(name = "video_pet", nullable = false, unique = false)
+	@Column(name = "video_pet", nullable = false, unique = false, updatable = false, insertable = false)
 	private byte[] video;
 
-	@Column(name = "video_pet", nullable = false, unique = false)
+	@Column(name = "video_pet", nullable = false, unique = false, updatable = false, insertable = false)
 	private byte[] foto;
 
 	@Column(name = "situacao_pet", length = 50, nullable = false, unique = false)
 	private String situacaoPet;
 
-	@Column(name = "data_envio_video", nullable = false, unique = false)
+	@Column(name = "data_envio_video", nullable = false, unique = false, updatable = false, insertable = false)
 	private LocalDate dataEnvioVideo;
 
-	@Column(name = "data_envio_video", nullable = false, unique = false)
+	@Column(name = "data_envio_foto", nullable = false, unique = false, updatable = false, insertable = false)
 	private LocalDate dataEnvioFoto;
 
 	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "id_ong", nullable = true)
+	@JoinColumn(name = "id_ong")
 	private Ong ong;
 
 	@OneToOne(fetch = FetchType.LAZY)
@@ -64,8 +63,8 @@ public class Acompanhamento {
 	@JoinColumn(name = "id_adocao", nullable = true)
 	private Adocao adocao;
 
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "acompanhamento", cascade = CascadeType.ALL, orphanRemoval = true)
-	private List<Pendencia> historicoAcompanhamento = new ArrayList<>();
+	//@OneToMany(fetch = FetchType.LAZY, mappedBy = "acompanhamento", cascade = CascadeType.ALL, orphanRemoval = true)
+	//private List<Pendencia> historicoAcompanhamento = new ArrayList<>();
 
 	@Enumerated(EnumType.ORDINAL)
 	@Column(name = "status_acompanhamento", nullable = true, unique = false)
@@ -185,9 +184,9 @@ public class Acompanhamento {
 		this.adocao = adocao;
 	}
 
-	public List<Pendencia> getPendencia() {
-		return historicoAcompanhamento;
-	}
+//	public List<Pendencia> getPendencia() {
+//		return historicoAcompanhamento;
+//	}
 
 	public StatusAcompanhamento getStatusAcompanhamento() {
 		return statusAcompanhamento;
@@ -197,11 +196,11 @@ public class Acompanhamento {
 		this.statusAcompanhamento = statusAcompanhamento;
 	}
 
-	public void adicionarPendencia(Pendencia pendencia) {
-		this.historicoAcompanhamento.add(pendencia);
-	}
-
-	public void RemkoverPendencia(Pendencia pendencia) {
-		this.historicoAcompanhamento.remove(pendencia);
-	}
+//	public void adicionarPendencia(Pendencia pendencia) {
+//		this.historicoAcompanhamento.add(pendencia);
+//	}
+//
+//	public void RemkoverPendencia(Pendencia pendencia) {
+//		this.historicoAcompanhamento.remove(pendencia);
+//	}
 }
