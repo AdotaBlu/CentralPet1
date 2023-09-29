@@ -14,6 +14,7 @@ import javax.persistence.Table;
 import centralpet.modelo.entidade.adocao.Adocao;
 import centralpet.modelo.entidade.endereco.Endereco;
 import centralpet.modelo.entidade.pet.Pet;
+import centralpet.modelo.entidade.recolhimento.Recolhimento;
 import centralpet.modelo.entidade.termo.Termo;
 import centralpet.modelo.entidade.usuario.Usuario;
 
@@ -34,6 +35,10 @@ public class Ong extends Usuario implements Serializable {
 	
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "ong", cascade = CascadeType.ALL, orphanRemoval = true)
 	private List<Adocao> doacoes = new ArrayList<>();
+	
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "ong", cascade = CascadeType.ALL, orphanRemoval = true)
+	private List<Recolhimento> recolhimentos = new ArrayList<>();
+	
 	
 	public Ong () {}
 	
@@ -91,6 +96,19 @@ public class Ong extends Usuario implements Serializable {
 	public void removerDoacao(Adocao doacao) {
 		this.doacoes.remove(doacao);
 	}
+	
+	public List<Recolhimento> getRecolhimentos() {
+		return recolhimentos;
+	}
+
+	public void adicionarRecolhimento(Recolhimento recolhimento) {
+		this.recolhimentos.add(recolhimento);
+	}
+	
+	public void removerRecolhimento(Recolhimento recolhimento) {
+		this.recolhimentos.remove(recolhimento);
+	}
+	
 	
 	
 }

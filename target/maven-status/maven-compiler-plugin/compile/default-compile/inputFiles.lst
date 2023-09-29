@@ -28,6 +28,7 @@ C:\Users\emanoel.lima\eclipse-workspace\CentralPet\src\main\java\centralpet\mode
 C:\Users\emanoel.lima\eclipse-workspace\CentralPet\src\main\java\centralpet\modelo\factory\conexao\ConexaoFactory.java
 C:\Users\emanoel.lima\eclipse-workspace\CentralPet\src\main\java\centralpet\modelo\dao\tutor\TutorDAO.java
 C:\Users\emanoel.lima\eclipse-workspace\CentralPet\src\main\java\centralpet\modelo\entidade\favorito\PetsFavoritosTutor.java
+C:\Users\emanoel.lima\eclipse-workspace\CentralPet\src\main\java\centralpet\modelo\entidade\recolhimento\Recolhimento.java
 C:\Users\emanoel.lima\eclipse-workspace\CentralPet\src\main\java\centralpet\modelo\dao\petsFavoritosTutor\PetsFavoritosTutorDAOImpl.java
 C:\Users\emanoel.lima\eclipse-workspace\CentralPet\src\main\java\centralpet\modelo\dao\endereco\EnderecoDAO.java
 C:\Users\emanoel.lima\eclipse-workspace\CentralPet\src\main\java\centralpet\modelo\dao\endereco\EnderecoDAOImpl.java
