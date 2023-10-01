@@ -24,6 +24,7 @@ centralpet\modelo\enumeracao\adocao\StatusAdocao.class
 centralpet\modelo\dao\contato\ContatoDAO.class
 centralpet\modelo\dao\tutor\TutorDAO.class
 centralpet\modelo\dao\usuario\UsuarioDAO.class
+centralpet\modelo\entidade\acompanhamento\Acompanhamento_.class
 centralpet\modelo\entidade\contato\Contato.class
 centralpet\modelo\factory\conexao\ConexaoFactory.class
 centralpet\modelo\enumeracao\pet\porte\PortePet.class

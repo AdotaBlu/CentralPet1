@@ -2,21 +2,47 @@ package centralpet.modelo.entidade.pendencia;
 
 import java.time.LocalDate;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 import centralpet.modelo.entidade.acompanhamento.Acompanhamento;
 import centralpet.modelo.enumeracao.pendencia.StatusPendencia;
 
-//@Entity
-//@Table(name = "pendencia")
+@Entity
+@Table(name = "pendencia")
 public class Pendencia {
 
+	private static final long serialVersionUID = 1L;
+	
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "id_pendencia")
 	private long id;
+	
+	@Column(name = "data_pendencia", nullable = false, unique = false, updatable = false, insertable = false)
 	private LocalDate dataPendencia;
+	
+	@Column(name = "motivo_pendencia", length = 50, nullable = false, unique = false)
 	private String motivo;
+	
+	@Column(name = "observacao_pendencia", length = 50, nullable = false, unique = false)
 	private String observacao;
-	private Acompanhamento acompanhamento;
+	
+	//@ManyToOne(fetch = FetchType.LAZY)
+	//@JoinColumn(name = "id_acompanhamento")
+	//private Acompanhamento acompanhamento;
+	
+	@Enumerated(EnumType.ORDINAL)
+	@Column(name = "status_pendencia", nullable = true, unique = false)
 	private StatusPendencia statusPendencia;
 
 	public Pendencia() {
@@ -27,7 +53,7 @@ public class Pendencia {
 		setDataPendencia(dataPendencia);
 		setMotivo(motivo);
 		setObservacao(observacao);
-		setAcompanhamento(acompanhamento);
+		//setAcompanhamento(acompanhamento);
 		setStatusPendencia(statusPendencia);
 
 	}
@@ -38,7 +64,7 @@ public class Pendencia {
 		setDataPendencia(dataPendencia);
 		setMotivo(motivo);
 		setObservacao(observacao);
-		setAcompanhamento(acompanhamento);
+		//setAcompanhamento(acompanhamento);
 		setStatusPendencia(statusPendencia);
 
 	}
@@ -75,13 +101,13 @@ public class Pendencia {
 		this.observacao = observacao;
 	}
 
-	public Acompanhamento getAcompanhamento() {
-		return acompanhamento;
-	}
+	//public Acompanhamento getAcompanhamento() {
+	//	return acompanhamento;
+	//}
 
-	public void setAcompanhamento(Acompanhamento acompanhamento) {
-		this.acompanhamento = acompanhamento;
-	}
+	//public void setAcompanhamento(Acompanhamento acompanhamento) {
+	//	this.acompanhamento = acompanhamento;
+	//}
 
 	public StatusPendencia getStatusPendencia() {
 		return statusPendencia;
