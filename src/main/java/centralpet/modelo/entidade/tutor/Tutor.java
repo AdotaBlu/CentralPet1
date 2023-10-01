@@ -11,9 +11,12 @@ import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.FetchType;
+import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
+import centralpet.modelo.entidade.acompanhamento.Acompanhamento;
 import centralpet.modelo.entidade.adocao.Adocao;
 import centralpet.modelo.entidade.endereco.Endereco;
 import centralpet.modelo.entidade.usuario.Usuario;
@@ -24,35 +27,44 @@ import centralpet.modelo.enumeracao.genero.GeneroTutor;
 public class Tutor extends Usuario implements Serializable {
 
 	private static final long serialVersionUID = 1L;
-	
+
 	@Column(name = "cpf_tutor", length = 11, nullable = false, unique = true)
 	private String cpf;
-	
+
 	@Column(name = "data_nascimento_tutor", nullable = false, unique = false)
 	private LocalDate dataNascimento;
-	
+
 	@Enumerated(EnumType.ORDINAL)
 	@Column(name = "genero_tutor", nullable = false, unique = false)
 	private GeneroTutor generoTutor;
-	
-	@OneToMany(fetch = FetchType.LAZY,mappedBy = "tutor", cascade = CascadeType.ALL, orphanRemoval = true)
+
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "tutor", cascade = CascadeType.ALL, orphanRemoval = true)
 	private List<Adocao> adocoes = new ArrayList<>();
-	
-	public Tutor () {}
-	
-	public Tutor (String nome, Endereco endereco, String cpf, LocalDate datanascimento, GeneroTutor generoTutor) {
+
+	//@OneToOne(fetch = FetchType.LAZY)
+	//@JoinColumn(name = "id_acompanhamento", nullable = true)
+	//private Acompanhamento acompanhamento;
+
+	public Tutor() {
+	}
+
+	public Tutor(String nome, Endereco endereco, String cpf, LocalDate datanascimento, GeneroTutor generoTutor,
+			Acompanhamento acompanhamento) {
 		super(nome, endereco);
 		setCpf(cpf);
 		setDataNascimento(datanascimento);
 		setGeneroTutor(generoTutor);
+		//setAcompanhamento(acompanhamento);
 	}
-	
-	public Tutor (String nome, Endereco endereco, Long id, String cpf, LocalDate datanascimento, GeneroTutor generoTutor) {
+
+	public Tutor(String nome, Endereco endereco, Long id, String cpf, LocalDate datanascimento, GeneroTutor generoTutor,
+			Acompanhamento acompanhamento) {
 		super(nome, endereco);
 		setId(id);
 		setCpf(cpf);
 		setDataNascimento(datanascimento);
 		setGeneroTutor(generoTutor);
+		//setAcompanhamento(acompanhamento);
 	}
 
 	public String getCpf() {
@@ -78,17 +90,24 @@ public class Tutor extends Usuario implements Serializable {
 	public void setGeneroTutor(GeneroTutor generoTutor) {
 		this.generoTutor = generoTutor;
 	}
-	
+
 	public List<Adocao> getAdocoes() {
 		return adocoes;
 	}
-	
-	public void adocaoFeita (Adocao adocao) {
+
+	public void adocaoFeita(Adocao adocao) {
 		this.adocoes.add(adocao);
 	}
-	
-	public void adocaoDesfeita (Adocao adocao) {
+
+	public void adocaoDesfeita(Adocao adocao) {
 		this.adocoes.remove(adocao);
 	}
-	
+
+//	public Acompanhamento getAcompanhamento() {
+//		return acompanhamento;
+//	}
+//
+//	public void setAcompanhamento(Acompanhamento acompanhamento) {
+//		this.acompanhamento = acompanhamento;
+//	}
 }
