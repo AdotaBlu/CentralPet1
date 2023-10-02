@@ -20,5 +20,7 @@
 		<mapping class="centralpet.modelo.entidade.adocao.Adocao" />
 		<mapping class="centralpet.modelo.entidade.favorito.PetsFavoritosTutor" />
 		<mapping class="centralpet.modelo.entidade.favorito.PetsFavoritosTutorId" />
+		<mapping class="centralpet.modelo.entidade.acompanhamento.Acompanhamento" />
+		<mapping class="centralpet.modelo.entidade.pendencia.Pendencia" />
 	</session-factory>
 </hibernate-configuration>
