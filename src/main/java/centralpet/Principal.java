@@ -255,15 +255,10 @@ public class Principal {
 		
 		petsFavoritosTutorDAO.inserirPetsFavoritados(petsFav2);
 		
-		List<Pet> petsfavoritos = new ArrayList<>();
 		
-		petsfavoritos = petsFavoritosTutorDAO.petsFavoritadosTutor(tutor);
-		
-		for(Pet favsTutor : petsfavoritos) {
-			System.out.println(favsTutor.getNome());
 			
 			
-		}
+		
 		
 		
 	} 
